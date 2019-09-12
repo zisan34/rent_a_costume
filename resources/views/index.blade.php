@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('contents')
+@section('content')
 
         <div class="ct-js-owl owl-carousel ct-mainCarousel ct-mainCarousel--arrowsMiddle" data-snap-ignore="true" data-pagination="false" data-items="1" data-autoPlay="false" data-bg="true" data-animations="true" data-height="525" data-navigation="true">
             <div class="item" data-bg="{{ asset('assets/images/demo-content/slider-image.png') }}">
@@ -117,7 +117,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="item">
+                        {{-- <div class="item">
                             <div class="ct-productShop ct-productShop--zoom">
                                 <div class="ct-productShop-category">
                                     <span class="ct-productShop-h5">Rings</span>
@@ -138,7 +138,7 @@
                                 </div>
                             </div>
                         </div>
-                        {{--<div class="item">
+                        <div class="item">
                             <div class="ct-productShop ct-productShop--zoom">
                                 <div class="ct-productShop-category">
                                     <span class="ct-productShop-h5">Rings</span>
@@ -665,59 +665,6 @@
                                 </div>
                             </div>
                         </div> --}}
-                    </div>
-                </div>
-            </div>
-
-            <!-- PreFOOTER -->
-            <div class="container">
-                <div class="ct-dividedSection ct-u-paddingTop60">
-                    <div class="row">
-                        <div class="col-md-7 col-sm-12">
-                            <div class="ct-dividedSection-left">
-                                <h3>Sign up for our newsletter</h3>
-                                <div class="ct-contactForm">
-                                    <div class="successMessage alert alert-success" style="display: none">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        Thank You!
-                                    </div>
-                                    <div class="errorMessage alert alert-danger" style="display: none">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        Ups! An error occured. Please try again later.
-                                    </div>
-                                    <form class="validateIt"  method="post" action="http://diana.html.themeplayers.net/assets/form/send.php" role="form" data-email-subject="Contact Form" data-show-errors="true">
-                                        <div class="input-group">
-                                            <input type="email" class="form-control" placeholder="Your Email Address" required name="field[]">
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-default btn-sm" type="submit"><i class="fa fa-fw fa-long-arrow-right"></i></button>
-                                        </span>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5 col-sm-12">
-                            <div class="ct-dividedSection-right">
-                                <img src="{{ asset('assets/images/demo-content/prefooter-diamond.png') }}" class="text-right pull-left" alt="Diamond Ring">
-                                <h3 class="text-uppercase text-right">Have a jewelry inquiry?</h3>
-                                If you have any  questions regarding our jeweleries please <a href="#">contact us directly</a> or use our contact form to get in touch.
-                                <div class="ct-dividedSection-right-triangle hidden-sm hidden-xs"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="ct-tooltips text-center ct-u-paddingTop50 ct-u-paddingBottom40">
-                        <ul class="list-unstyled list-inline">
-                            <li data-toggle="tooltip" title="75,000+ customers trusted us to create their rings."><i class="fa fa-heart fa-fw fa-6x"></i></li>
-                            <li data-toggle="tooltip" title="Pay by cash, credit card, bank transfer or store."><i class="fa fa-dollar fa-fw fa-6x"></i></li>
-                            <li data-toggle="tooltip" title="Fully protected, all payments secured."><i class="fa fa-lock fa-fw fa-6x"></i></li>
-                            <li data-toggle="tooltip" title="Double guarantee for gold and diamonds."><i class="fa fa-certificate fa-fw fa-6x"></i></li>
-                            <li data-toggle="tooltip" title="24/7 support at your service."><i class="fa fa-headphones fa-fw fa-6x"></i></li>
-                            <li data-toggle="tooltip" title="Latest news collections directly on your email."><i class="fa fa-envelope fa-fw fa-6x"></i></li>
-                            <li data-toggle="tooltip" title="Free & easy returns in 48h."><i class="fa fa-circle-o-notch fa-fw fa-6x"></i></li>
-                            <li data-toggle="tooltip" title="Free Delivery and Assurance."><i class="fa fa-truck fa-fw fa-6x"></i></li>
-                            <li data-toggle="tooltip" title="Your data is fully protected."><i class="fa fa-folder fa-fw fa-6x"></i></li>
-                            <li data-toggle="tooltip" title="Find your measurements for your ring."><i class="fa fa-pencil-square-o fa-fw fa-6x"></i></li>
-                        </ul>
                     </div>
                 </div>
             </div>
