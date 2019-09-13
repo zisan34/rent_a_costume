@@ -29,6 +29,13 @@
                 @else
                 <li><a href="login.html"><i class="fa fa-user fa-fw"></i> Logout</a></li>
                 @endguest
+
+                @auth
+                @if(auth()->user()->is_super_admin)
+                <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-cog fa-fw"></i>Admin Panel</a></li>
+                @endif
+                @endauth
+
                 <li><a href="my-account.html"><i class="fa fa-cog fa-fw"></i> My Account</a></li>
                 <li><a href="wishlist.html"><i class="fa fa-edit fa-fw"></i> Wishlist</a></li>
                 <li><a href="checkout.html"><i class="fa fa-archive fa-fw"></i> Checkout</a></li>

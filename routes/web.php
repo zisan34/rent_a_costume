@@ -12,7 +12,19 @@
 */
 
 
+Route::get('/','HomeController@index');
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'admin', 'middleware'=>'admin'], function() {
+
+	Route::name('admin.')->group(function () {
+
+
+		Route::get('/dashboard','BackendController@index')->name('dashboard');
+
+	});
+	});
 
 
 Auth::routes();

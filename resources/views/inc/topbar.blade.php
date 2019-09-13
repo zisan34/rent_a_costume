@@ -13,7 +13,14 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
+
+                            @auth
+                            @if(auth()->user()->is_super_admin)
+                            <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-fw fa-pencil"></i> Admin Panel</a></li>
+                            @endif
+                            @endauth
                         @endguest
+
 
                     </ul>
                 </div>
