@@ -3,28 +3,61 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\User;
 
-class BackendController extends Controller
+class BackendController extends AdminBaseController
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function __construct()
     {
-        //
-        return view('admin.dashboard');
+        parent::__construct();
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function index($id)
+    {
+        return view('admin.'.$id,$this->data);
+    }
+    public function calendar(){
+        $this->user=Auth::user();
+        return view('admin.apps-calendar');
+    }
+   
+    public function appscontacts(){
+        $this->user=Auth::user();
+        return $this->data;
+       // return view('admin.apps-contacts');
+    }
+    public function appstickets(){
+        $this->user=Auth::user();
+        return view('admin.apps-tickets');
+    }
+    public function appscompanies(){
+        $this->user=Auth::user();
+        return view('admin.apps-companies');
+    }
+    public function ecommerceproducts(){
+        $this->user=Auth::user();
+        return view('admin.ecommerce-products');
+    }
+    public function ecommerceprductdetail(){
+        return view('admin.ecommerce-prduct-detail');
+    }
+    public function ecommerceproductedit(){
+        return view('admin.ecommerce-product-edit');
+    }
+    public function ecommerceorders(){
+        return view('admin.ecommerce-orders');
+    }
+    public function ecommercesellers(){
+        return view('admin.ecommerce-sellers');
+    }
     public function create()
     {
         //
+    }
+    public function dashboard(){
+        $this->user=Auth::user();
+       // return $this->data;
+        return view('admin.ecommerce-dashboard',$this->data);
     }
 
     /**
@@ -83,3 +116,4 @@ class BackendController extends Controller
         //
     }
 }
+ 

@@ -16,17 +16,26 @@ Route::get('/','HomeController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin', 'middleware'=>'admin'], function() {
+Route::group(['prefix' => 'admin/', 'middleware'=>'auth'], function() {
+	Route::get('adminDashboard','BackEndController@dashboard')->name('admin.dashboard');
+	Route::any('apps-calendar','BackEndController@calendar');
+	Route::get('{any}','BackendController@index')->name('dashboard');
+	
+	Route::get('apps-contacts', 'BackEndController@appscontacts');
+	Route::get('apps-tickets', 'BackEndController@appstickets');
+	Route::get('apps-companies', 'BackEndController@appscompanies');
+	Route::get('ecommerce-products', 'BackEndController@ecommerceproducts');
+	Route::get('ecommerce-prduct-detail', 'BackEndController@ecommerceprductdetail');
+	Route::get('ecommerce-product-edit', 'BackEndController@ecommerceproductedit');
+	Route::get('ecommerce-orders', 'BackEndController@ecommerceorders');
+	Route::get('ecommerce-sellers', 'BackEndController@ecommercesellers');
 
-	Route::name('admin.')->group(function () {
-
-
-		Route::get('/dashboard','BackendController@index')->name('dashboard');
-
-	});
-	});
+});
 
 
 Auth::routes();
+
+
+
 
 
