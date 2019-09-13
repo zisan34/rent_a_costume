@@ -10,7 +10,7 @@
                         </ul>
                     </div>
                     <div class="ct-header-logo">
-                        <a href="index-2.html">
+                        <a href="{{ route('home') }}">
                             {{-- {{env('APP_NAME')}} --}}
                             <img src="{{ asset('assets/images/demo-content/logo.png') }}" alt="Diana Logo">
                         </a>
@@ -21,7 +21,7 @@
                 <div class="container">
                     <ul class="nav navbar-nav ct-navbar--fadeIn">
                         <li class="dropdown active">
-                            <a href="index-2.html">Home</a>
+                            <a href="{{ route('home') }}">Home</a>
                             <ul class="dropdown-menu">
                                 <li>
                                     <div class="yamm-content">
@@ -86,7 +86,7 @@
                                                     <li><a href="my-cart.html"><i class="fa fa-angle-right fa-fw"></i> Cart</a></li>
                                                     <li><a href="checkout.html"><i class="fa fa-angle-right fa-fw"></i> Checkout</a></li>
                                                     <li><a href="wishlist.html"><i class="fa fa-angle-right fa-fw"></i> Wishlist</a></li>
-                                                    <li><a href="create-account.html"><i class="fa fa-angle-right fa-fw"></i> Register</a></li>
+                                                    <li><a href="{{ route('register') }}"><i class="fa fa-angle-right fa-fw"></i> Register</a></li>
                                                     <li><a href="login.html"><i class="fa fa-angle-right fa-fw"></i> Login</a></li>
                                                     <li><a href="lost-password.html"><i class="fa fa-angle-right fa-fw"></i> Lost Password</a></li>
                                                 </ul>

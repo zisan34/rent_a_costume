@@ -4,8 +4,24 @@
                 <div class="ct-topBar-navigation pull-left">
                     <ul class="list-unstyled">
                         <li><i class="fa fa-fw fa-phone"></i> Call us: (012) 345-6789</li>
-                        <li><a href="login.html"><i class="fa fa-fw fa-user"></i> Login</a></li>
-                        <li><a href="create-account.html"><i class="fa fa-fw fa-pencil"></i> Create an account</a></li>
+                        @guest
+                        <li><a href="{{ route('login') }}"><i class="fa fa-fw fa-user"></i> Login</a></li>
+                        <li><a href="{{ route('register') }}"><i class="fa fa-fw fa-pencil"></i> Create an account</a></li>
+                        @else
+                        <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="fa fa-fw fa-user"></i> Logout</a></li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
+                            @auth
+                            @if(auth()->user()->is_super_admin)
+                            <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-fw fa-pencil"></i> Admin Panel</a></li>
+                            @endif
+                            @endauth
+                        @endguest
+
+
                     </ul>
                 </div>
 
