@@ -38,7 +38,7 @@ class BackendController extends AdminBaseController
                     // Add color and link on event
                     [
                         'color' => '#f05050',
-                        'url' => 'pass here url and any route',
+                        'url' => route('event.show',['id'=>$value->id])
                     ]
                 );
             }
