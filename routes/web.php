@@ -18,7 +18,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin/', 'middleware'=>'auth'], function() {
 	Route::get('adminDashboard','BackEndController@dashboard')->name('admin.dashboard');
-	Route::any('apps-calendar','BackEndController@calendar');
+	Route::any('apps-calendar','BackEndController@calendar')->name('app.calendar');
 	Route::get('{any}','BackendController@index')->name('dashboard');
 	
 	Route::get('apps-contacts', 'BackEndController@appscontacts');
@@ -29,6 +29,12 @@ Route::group(['prefix' => 'admin/', 'middleware'=>'auth'], function() {
 	Route::get('ecommerce-product-edit', 'BackEndController@ecommerceproductedit');
 	Route::get('ecommerce-orders', 'BackEndController@ecommerceorders');
 	Route::get('ecommerce-sellers', 'BackEndController@ecommercesellers');
+
+
+	Route::post('event/add','EventsController@store')->name('event.add');
+	Route::post('event/update','EventsController@update')->name('event.update');
+	Route::get('event/show/{id}','EventsController@show')->name('event.show');
+	Route::get('event/delete/{id}','EventsController@delete')->name('event.delete');
 
 });
 
