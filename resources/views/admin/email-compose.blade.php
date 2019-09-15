@@ -1,8 +1,8 @@
-@extends('layouts.master')
+@extends('admin.layouts.master')
 
 @section('css')
         <!-- Summernote css -->
-        <link href="{{ URL::asset('assets/libs/summernote/summernote-bs4.css')}}" rel="stylesheet" />
+        <link href="{{ URL::asset('backend/assets/libs/summernote/summernote.min.css')}}" rel="stylesheet" />
 @endsection
 
 @section('content')
@@ -30,9 +30,9 @@
                         <!-- Right Sidebar -->
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="card-box">
+                                {{-- <div class="card-box"> --}}
                                     <!-- Left sidebar -->
-                                    <div class="inbox-leftbar">
+                                    {{-- <div class="inbox-leftbar">
 
                                         <a href="email-inbox" class="btn btn-danger btn-block waves-effect waves-light">Inbox</a>
 
@@ -54,10 +54,10 @@
                                             <a href="#" class="list-group-item border-0"><span class="mdi mdi-circle text-success mr-2"></span>Family</a>
                                         </div>
 
-                                    </div>
+                                    </div> --}}
                                     <!-- End Left sidebar -->
 
-                                    <div class="inbox-rightbar">
+                                    {{-- <div class="inbox-rightbar"> --}}
 
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-light waves-effect"><i class="mdi mdi-archive font-18"></i></button>
@@ -106,50 +106,46 @@
                                         </div>
 
                                         <div class="mt-4">
-                                            <form>
+                                            <form method="post" action="{{ route('email.custom.send') }}">
+                                                @csrf
                                                 <div class="form-group">
-                                                    <input type="email" class="form-control" placeholder="To">
+                                                    <input type="email" class="form-control" name="email" placeholder="To" value="@isset($email){{$email}}@endisset">
+                                                    <div class="alert-danger">{{$errors->first('email')}}</div>
                                                 </div>
         
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control" placeholder="Subject">
+                                                    <input type="text" class="form-control" name="subject" placeholder="Subject" value="">
+                                                    <div class="alert-danger">{{$errors->first('subject')}}</div>
+
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="summernote">
-                                                        <h6>Hello Summernote</h6>
-                                                        <ul>
-                                                            <li>
-                                                                Select a text to reveal the toolbar.
-                                                            </li>
-                                                            <li>
-                                                                Edit rich document on-the-fly, so elastic!
-                                                            </li>
-                                                        </ul>
-                                                        <p>
-                                                            End of air-mode area
-                                                        </p>
-        
-                                                    </div>
+
+                                                    <textarea class="form-control" id="summernote" name="message"  overlay="auto"></textarea>
+                                                    <div class="alert-danger">{{$errors->first('message')}}</div>
+
                                                 </div>
         
                                                 <div class="form-group m-b-0">
                                                     <div class="text-right">
-                                                        <button type="button" class="btn btn-success waves-effect waves-light m-r-5"><i class="mdi mdi-content-save-outline"></i></button>
-                                                        <button type="button" class="btn btn-success waves-effect waves-light m-r-5"><i class="mdi mdi-delete"></i></button>
-                                                        <button class="btn btn-primary waves-effect waves-light"> <span>Send</span> <i class="mdi mdi-send ml-2"></i> </button>
+                                                        {{-- <button type="button" class="btn btn-success waves-effect waves-light m-r-5"><i class="mdi mdi-content-save-outline"></i></button> --}}
+                                                        {{-- <button type="button" class="btn btn-success waves-effect waves-light m-r-5"><i class="mdi mdi-delete"></i></button> --}}
+                                                        
+                                                        <input type="submit" value="Send" class="btn btn-primary waves-effect waves-light">
+
                                                     </div>
                                                 </div>
         
                                             </form>
                                         </div> <!-- end card-->
             
-                                    </div> 
+                                    {{-- </div>  --}}
                                     <!-- end inbox-rightbar-->
 
                                     <div class="clearfix"></div>
                                 </div>
 
-                            </div> <!-- end Col -->
+                            {{-- </div>  --}}
+                            <!-- end Col -->
 
                         </div><!-- End row -->
                         
@@ -160,15 +156,27 @@
 @section('script')
 
         <!--Summernote js-->
-        <script src="{{ URL::asset('assets/libs/summernote/summernote-bs4.min.js')}}"></script>
+        <script src="{{ URL::asset('backend/assets/libs/summernote/summernote.min.js')}}"></script>
 
         <script>
             jQuery(document).ready(function(){
-                $('.summernote').summernote({
+                $('#summernote').summernote({
+                    placeholder: 'Write your message here.',
                     height: 230,                 // set editor height
                     minHeight: null,             // set minimum height of editor
                     maxHeight: null,             // set maximum height of editor
-                    focus: false                 // set focus to editable area after initializing summernote
+                    focus: false ,                // set focus to editable area after initializing summernote
+                      toolbar: [
+                          ['style', ['style']],
+                          ['font', ['bold', 'underline', 'clear']],
+                          ['fontname', ['fontname']],
+                          ['fontsize', ['fontsize']],
+                          ['color', ['color']],
+                          ['para', ['ul', 'ol', 'paragraph']],
+                          ['table', ['table']],
+                          ['insert', ['link', 'picture']],
+                          ['view', ['fullscreen', 'help']]
+                    ]
                 });
             });
         </script>
