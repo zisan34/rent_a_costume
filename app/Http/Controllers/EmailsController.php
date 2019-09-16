@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Mail;
 
 use App\Mail\CustomMail;
 
+use App\User;
+
 
 class EmailsController extends Controller
 {
@@ -24,6 +26,28 @@ class EmailsController extends Controller
     		'message'=>'required']);
     	Mail::to($email['email'])->send(new CustomMail($email));
 
+    	return redirect()->route('admin.dashboard');
+
+    }
+
+    public function multipleEmail()
+    {
+    	$users=User::orderBy('created_at','DESC')->get();
+
+    	return view('admin.email-multiple')->with('users',$users);
+    }
+
+    public function sendMultipleMail(Request $request)
+    {    	
+    	$data=request()->validate([
+    		'email.*'=>'required|email',
+    		'subject'=>'string|nullable',
+    		'message'=>'required']);
+
+    	foreach($data['email'] as $email)
+    	{
+	    	Mail::to($email)->send(new CustomMail($data));	
+    	}
     	return redirect()->route('admin.dashboard');
 
     }

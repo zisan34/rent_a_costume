@@ -1,4 +1,4 @@
-<!-- ========== Left Sidebar Start ========== -->
+========== Left Sidebar Start ========== -->
 <div class="left-side-menu">
 
     <div class="slimscroll-menu">
@@ -48,13 +48,13 @@
                         <li>
                             <a href="{{url('admin/apps-contacts')}}">Contacts</a>
                         </li>
-                       
+                       {{-- 
                         <li>
                             <a href="{{url('admin/apps-tickets')}}">Tickets</a>
                         </li>
                         <li>
                             <a href="{{url('admin/apps-companies')}}">Companies</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 
@@ -147,18 +147,21 @@
                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li>
+                        {{-- <li>
                             <a href="email-inbox">Inbox</a>
                         </li>
                         <li>
                             <a href="email-read">Read Email</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="email-compose">Compose Email</a>
                         </li>
                         <li>
-                            <a href="email-templates">Email Templates</a>
+                            <a href="{{ route('email.multiple') }}">Multiple Email</a>
                         </li>
+                        {{-- <li>
+                            <a href="email-templates">Email Templates</a>
+                        </li> --}}
                     </ul>
                 </li>
 
@@ -542,4 +545,4 @@
     <!-- Sidebar -left -->
 
 </div>
-<!-- Left Sidebar End -->
+<!-- Left Sidebar End

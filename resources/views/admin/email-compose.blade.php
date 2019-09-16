@@ -59,12 +59,12 @@
 
                                     {{-- <div class="inbox-rightbar"> --}}
 
-                                        <div class="btn-group">
+                                        {{-- <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-light waves-effect"><i class="mdi mdi-archive font-18"></i></button>
                                             <button type="button" class="btn btn-sm btn-light waves-effect"><i class="mdi mdi-alert-octagon font-18"></i></button>
                                             <button type="button" class="btn btn-sm btn-light waves-effect"><i class="mdi mdi-delete-variant font-18"></i></button>
-                                        </div>
-                                        <div class="btn-group">
+                                        </div> --}}
+                                        {{-- <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-light dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false">
                                                 <i class="mdi mdi-folder font-18"></i>
                                                 <i class="mdi mdi-chevron-down"></i>
@@ -76,8 +76,8 @@
                                                 <a class="dropdown-item" href="javascript: void(0);">Updates</a>
                                                 <a class="dropdown-item" href="javascript: void(0);">Forums</a>
                                             </div>
-                                        </div>
-                                        <div class="btn-group">
+                                        </div> --}}
+                                        {{-- <div class="btn-group">
                                             <button type="button" class="btn btn-sm btn-light dropdown-toggle waves-effect" data-toggle="dropdown" aria-expanded="false">
                                                 <i class="mdi mdi-label font-18"></i>
                                                 <i class="mdi mdi-chevron-down"></i>
@@ -103,7 +103,7 @@
                                                 <a class="dropdown-item" href="javascript: void(0);">Add Star</a>
                                                 <a class="dropdown-item" href="javascript: void(0);">Mute</a>
                                             </div>
-                                        </div>
+                                        </div> --}}
 
                                         <div class="mt-4">
                                             <form method="post" action="{{ route('email.custom.send') }}">

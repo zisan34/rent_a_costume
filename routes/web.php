@@ -40,7 +40,12 @@ Route::group(['prefix' => 'admin/', 'middleware'=>'admin'], function() {
 
 
 	Route::get('email/compose/{email}','EmailsController@customMail')->name('email.custom');
+
+	Route::get('email/multiple','EmailsController@multipleEmail')->name('email.multiple');
+
 	Route::post('email/custom/send','EmailsController@sendCustomMail')->name('email.custom.send');
+
+	Route::post('email/multiple/send','EmailsController@sendMultipleMail')->name('email.multiple.send');
 
 
 
