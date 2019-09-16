@@ -16,10 +16,11 @@ Route::get('/','HomeController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin/', 'middleware'=>'auth'], function() {
+Route::group(['prefix' => 'admin/', 'middleware'=>'admin'], function() {
 	Route::get('adminDashboard','BackEndController@dashboard')->name('admin.dashboard');
 	Route::any('apps-calendar','BackEndController@calendar');
 	Route::any('apps-calendar','BackEndController@calendar')->name('app.calendar');
+
 	
 	Route::get('apps-contacts', 'BackEndController@appscontacts');
 	Route::get('apps-tickets', 'BackEndController@appstickets');
@@ -40,6 +41,9 @@ Route::group(['prefix' => 'admin/', 'middleware'=>'auth'], function() {
 
 	Route::get('email/compose/{email}','EmailsController@customMail')->name('email.custom');
 	Route::post('email/custom/send','EmailsController@sendCustomMail')->name('email.custom.send');
+
+
+
 
 	Route::get('{any}','BackendController@index')->name('dashboard');
 	

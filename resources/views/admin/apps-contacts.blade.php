@@ -72,6 +72,7 @@
                                         <p><strong>Phone:</strong>{{$user->phone}} <span> <br> </span><strong>Email:</strong> <span> <a href="#" class="text-pink">{{$user->email}}</a> </span></p>
                                         
                                         <a href="{{ route('email.custom',['email'=>$user->email]) }}" class="btn btn-primary btn-sm waves-effect waves-light">Message</a>
+                                        <p class="text-muted"><strong>Phone:</strong>{{$user->phone}} <span> | </span><strong>Email:</strong> <span> <a href="#" class="text-pink">{{$user->email}}</a> </span></p>
 
                                         {{-- <a href="#" class="btn btn-primary btn-sm waves-effect waves-light">Message</a> --}}
                                         {{-- <button type="button" class="btn btn-light btn-sm waves-effect">Follow</button> --}}
