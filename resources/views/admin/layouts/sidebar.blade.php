@@ -84,7 +84,7 @@
                 <li>
                     <a href="javascript: void(0);">
                         <i class="fe-shopping-cart"></i>
-                        <span> Commerce </span>
+                        <span> E-Commerce </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
@@ -246,6 +246,23 @@
                             <a href="extras-gallery">Gallery</a>
                         </li> --}}
                     </ul>
+                </li>
+
+
+                <li>
+                    <a href="{{route('siteSettings')}}">
+                        <i class="fe-settings"></i>
+                        {{-- <span class="badge badge-success badge-pill float-right">4</span> --}}
+                        <span> Site Settings </span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{route('userManagement')}}">
+                        <i class="fe-users"></i>
+                        {{-- <span class="badge badge-success badge-pill float-right">4</span> --}}
+                        <span>User Management </span>
+                    </a>
                 </li>
 
                 <li class="menu-title mt-2">Components</li>

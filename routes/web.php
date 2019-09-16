@@ -46,6 +46,13 @@ Route::group(['prefix' => 'admin/', 'middleware'=>'admin'], function() {
 
 	Route::post('email/multiple/send','EmailsController@sendMultipleMail')->name('email.multiple.send');
 
+	Route::get('site-settings','BackendController@siteSettings')->name('siteSettings');
+	Route::post('site-settings/update','BackendController@updatesiteSettings')->name('siteSettings.update');
+
+
+	Route::get('user-management','BackendController@userManagement')->name('userManagement');
+	Route::get('user-management/user/disable/{id}','BackendController@userDisable')->name('user.disable');
+	Route::get('user-management/user/enable/{id}','BackendController@userEnable')->name('user.enable');
 
 
 
