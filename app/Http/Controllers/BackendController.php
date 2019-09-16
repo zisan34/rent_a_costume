@@ -48,10 +48,9 @@ class BackendController extends AdminBaseController
         return view('admin.apps-calendar')->with('calendar',$calendar);
     }
    
-    public function appscontacts(){
-        $this->user=Auth::user();
-        return $this->data;
-       // return view('admin.apps-contacts');
+    public function appscontacts(){        
+       $users =User::all(); 
+       return view('admin.apps-contacts')->with('users',$users);
     }
     public function appstickets(){
         $this->user=Auth::user();
