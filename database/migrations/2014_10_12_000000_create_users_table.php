@@ -24,7 +24,8 @@ class CreateUsersTable extends Migration
             $table->unsignedInteger('city_id');
             $table->string('image')->nullable();
             $table->string('gender');
-            $table->string('status')->nullable();
+            $table->string('status')->nullable();            
+            $table->boolean('enabled')->default('1');
             $table->boolean('is_super_admin')->default(0);
             $table->string('password');
             $table->rememberToken();

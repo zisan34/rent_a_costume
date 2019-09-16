@@ -19,8 +19,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'admin/', 'middleware'=>'admin'], function() {
 	Route::get('adminDashboard','BackEndController@dashboard')->name('admin.dashboard');
 
-  Route::get('apps-calendar','BackEndController@calendar')->name('app.calendar');
+	Route::get('apps-calendar','BackEndController@calendar')->name('app.calendar');
 
+	Route::group(['prefix' => 'apps-calendar/'], function() {
+
+		Route::post('event/add','EventsController@store')->name('event.add');
+		Route::post('event/update','EventsController@update')->name('event.update');
+		Route::get('event/show/{id}','EventsController@show')->name('event.show');
+		Route::get('event/delete/{id}','EventsController@delete')->name('event.delete');
+
+	});
 	
 	Route::get('apps-contacts', 'BackEndController@appscontacts');
 	Route::get('apps-tickets', 'BackEndController@appstickets');
@@ -32,19 +40,14 @@ Route::group(['prefix' => 'admin/', 'middleware'=>'admin'], function() {
 	Route::get('ecommerce-sellers', 'BackEndController@ecommercesellers');
 
 
-	Route::post('event/add','EventsController@store')->name('event.add');
-	Route::post('event/update','EventsController@update')->name('event.update');
-	Route::get('event/show/{id}','EventsController@show')->name('event.show');
-	Route::get('event/delete/{id}','EventsController@delete')->name('event.delete');
 
+	Route::get('email-compose/{email}','EmailsController@customMail')->name('email.custom');
 
-	Route::get('email/compose/{email}','EmailsController@customMail')->name('email.custom');
+	Route::get('email-compose/multiple','EmailsController@multipleEmail')->name('email.multiple');
 
-	Route::get('email/multiple','EmailsController@multipleEmail')->name('email.multiple');
+	Route::post('email-compose/custom/send','EmailsController@sendCustomMail')->name('email.custom.send');
 
-	Route::post('email/custom/send','EmailsController@sendCustomMail')->name('email.custom.send');
-
-	Route::post('email/multiple/send','EmailsController@sendMultipleMail')->name('email.multiple.send');
+	Route::post('email-compose/multiple/send','EmailsController@sendMultipleMail')->name('email.multiple.send');
 
 
 
