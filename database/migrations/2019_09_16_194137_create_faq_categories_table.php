@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFaqsTable extends Migration
+class CreateFaqCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateFaqsTable extends Migration
      */
     public function up()
     {
-        Schema::create('faqs', function (Blueprint $table) {
+        Schema::create('faq_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('faq_category_id');
-            $table->string('question');
-            $table->string('answer');
-            $table->integer('upvote')->default('0');
-            $table->integer('downvote')->default('0');
+            $table->string('title');
+            $table->string('description');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateFaqsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('faqs');
+        Schema::dropIfExists('faq_categories');
     }
 }
