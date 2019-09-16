@@ -10,4 +10,13 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public $data = [];
+    public function __set($name, $value)
+    {
+        $this->data[$name] = $value;
+    }
+    public function __get($name)
+    {
+        return $this->data[$name];
+    }
 }

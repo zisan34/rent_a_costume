@@ -16,6 +16,7 @@ class BackendController extends AdminBaseController
     public function __construct()
     {
         parent::__construct();
+        $this->site_title = 'Category & Brand Controll';
     }
     public function index($id)
     {
