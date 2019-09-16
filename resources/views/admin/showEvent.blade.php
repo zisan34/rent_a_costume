@@ -21,58 +21,54 @@
                                             <li class="breadcrumb-item active">Calendar</li>
                                         </ol>
                                     </div>
-                                    <h4 class="page-title">Calendar</h4>
+                                    <h4 class="page-title">Edit Event</h4>
                                 </div>
                             </div>
                         </div>     
                         <!-- end page title --> 
                         <div class="row">
                             <div class="col-12">
-                                <form method="post" action="{{route('event.add')}}">
+                                <form method="post" action="{{route('event.update')}}">
                                     @csrf
+                                    <input type="text" name="id" hidden value="{{encrypt($event->id)}}">
                                     <div class="row">
                                       <div class="col-md-12"></div>
                                       <div class="form-group col-md-12">
                                         <label for="Title"><strong>Title:</strong></label>
-                                        <input type="text" class="form-control" name="title">
+                                        <input type="text" class="form-control" name="title" value="{{$event->title}}">
                                       </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12"></div>
                                         <div class="form-group col-md-12">
                                         <strong> Description(optional): </strong>  
-                                        <input class="date form-control"  type="text" id="description" name="description">
+                                        <input class="date form-control"  type="text" id="description" name="description" value="{{$event->description}}">
                                         </div>
                                     </div>
                                     <div class="row">
                                       <div class="col-md-12"></div>
                                       <div class="form-group col-md-12">
                                         <strong> Start Date : </strong>  
-                                        <input class="date form-control"  type="date" id="startdate" name="startdate">   
+                                        <input class="date form-control"  type="date" id="startdate" name="startdate" value="{{$event->start_date}}">   
                                      </div>
                                     </div>
                                     <div class="row">
                                       <div class="col-md-12"></div>
                                       <div class="form-group col-md-12">
                                         <strong> End Date : </strong>  
-                                        <input class="date form-control"  type="date" id="enddate" name="enddate">   
+                                        <input class="date form-control"  type="date" id="enddate" name="enddate" value="{{$event->end_date}}">   
                                      </div>
                                     </div>
                                     <div class="row">
                                       <div class="col-md-12"></div>
                                       <div class="form-group col-md-12">
-                                        <button type="submit" class="btn btn-success">Add Event</button>
+                                        <button type="submit" class="btn btn-success">Update Event</button>
+                                        <a href="{{ route('event.delete',['id'=>encrypt($event->id)]) }}" class="btn btn-danger float-right">Delete</a>
                                       </div>
                                     </div>
                                 </form>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12">
-                                {!! $calendar->calendar() !!}
-                            </div>
-                            <!-- end col-12 -->
-                        </div> <!-- end row -->
                         
                     </div> <!-- container -->
 
@@ -88,6 +84,5 @@
         <!-- Calendar init -->
         {{-- <script src="{{ URL::asset('backend/assets/js/pages/calendar.init.js')}}"></script> --}}
 
-        {!!$calendar->script()!!}
 
 @endsection

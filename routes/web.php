@@ -18,7 +18,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'admin/', 'middleware'=>'admin'], function() {
 	Route::get('adminDashboard','BackEndController@dashboard')->name('admin.dashboard');
-	Route::get('apps-calendar','BackEndController@calendar')->name('app.calendar');
+
+  Route::get('apps-calendar','BackEndController@calendar')->name('app.calendar');
 
 	
 	Route::get('apps-contacts', 'BackEndController@appscontacts');
@@ -29,7 +30,6 @@ Route::group(['prefix' => 'admin/', 'middleware'=>'admin'], function() {
 	Route::get('ecommerce-product-edit', 'BackEndController@ecommerceproductedit');
 	Route::get('ecommerce-orders', 'BackEndController@ecommerceorders');
 	Route::get('ecommerce-sellers', 'BackEndController@ecommercesellers');
-
 
 
 	Route::post('event/add','EventsController@store')->name('event.add');
