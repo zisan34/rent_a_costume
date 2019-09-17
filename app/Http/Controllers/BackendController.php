@@ -10,6 +10,8 @@ use Calendar;
 use App\User;
 use App\Event;
 use App\Sitesetting;
+use App\Faq;
+use App\FaqCategory;
 
 
 class BackendController extends AdminBaseController
@@ -168,6 +170,17 @@ class BackendController extends AdminBaseController
        // return $this->data;
         return view('admin.ecommerce-dashboard',$this->data);
     }
+
+
+    public function faqs()
+    {
+        $faqs=Faq::all();
+        $faqCategories=FaqCategory::all();
+
+        return view('admin.faqs')->with('faqs',$faqs)
+                                ->with('faqCategories',$faqCategories);
+    }
+
 
     /**
      * Store a newly created resource in storage.
