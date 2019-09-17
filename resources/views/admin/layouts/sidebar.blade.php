@@ -248,6 +248,24 @@
                     </ul>
                 </li>
 
+                <li>
+                    <a href="{{route('userManagement')}}">
+                        <i class="fe-users"></i>
+                        {{-- <span class="badge badge-success badge-pill float-right">4</span> --}}
+                        <span>User Management </span>
+                    </a>
+                </li>
+
+
+
+                <li>
+                    <a href="{{route('faqs')}}">
+                        <i class="fe-bookmark"></i>
+                        {{-- <span class="badge badge-success badge-pill float-right">4</span> --}}
+                        <span>FAQs</span>
+                    </a>
+                </li>
+
 
                 <li>
                     <a href="{{route('siteSettings')}}">
@@ -257,13 +275,6 @@
                     </a>
                 </li>
 
-                <li>
-                    <a href="{{route('userManagement')}}">
-                        <i class="fe-users"></i>
-                        {{-- <span class="badge badge-success badge-pill float-right">4</span> --}}
-                        <span>User Management </span>
-                    </a>
-                </li>
 
                 <li class="menu-title mt-2">Components</li>
 

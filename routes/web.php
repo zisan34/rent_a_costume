@@ -54,6 +54,14 @@ Route::group(['prefix' => 'admin/', 'middleware'=>'admin'], function() {
 	Route::get('user-management/user/disable/{id}','BackendController@userDisable')->name('user.disable');
 	Route::get('user-management/user/enable/{id}','BackendController@userEnable')->name('user.enable');
 
+	Route::get('faqs','BackendController@faqs')->name('faqs');
+
+	Route::post('faq/add','FaqsController@store')->name('faq.add');
+	Route::get('faq/show/{id}','FaqsController@show')->name('faq.show');
+	Route::post('faq/edit','FaqsController@update')->name('faq.edit');
+	Route::get('faq/delete/{id}','FaqsController@destroy')->name('faq.delete');
+
+
 
 
 	Route::get('{any}','BackendController@index')->name('dashboard');
