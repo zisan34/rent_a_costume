@@ -1,4 +1,4 @@
-<!-- ========== Left Sidebar Start ========== -->
+========== Left Sidebar Start ========== -->
 <div class="left-side-menu">
 
     <div class="slimscroll-menu">
@@ -48,13 +48,13 @@
                         <li>
                             <a href="{{url('admin/apps-contacts')}}">Contacts</a>
                         </li>
-                       
+                       {{-- 
                         <li>
                             <a href="{{url('admin/apps-tickets')}}">Tickets</a>
                         </li>
                         <li>
                             <a href="{{url('admin/apps-companies')}}">Companies</a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
 
@@ -105,7 +105,7 @@
                 <li>
                     <a href="javascript: void(0);">
                         <i class="fe-shopping-cart"></i>
-                        <span> Commerce </span>
+                        <span> E-Commerce </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
@@ -168,18 +168,21 @@
                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li>
+                        {{-- <li>
                             <a href="email-inbox">Inbox</a>
                         </li>
                         <li>
                             <a href="email-read">Read Email</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="email-compose">Compose Email</a>
                         </li>
                         <li>
-                            <a href="email-templates">Email Templates</a>
+                            <a href="{{ route('email.multiple') }}">Multiple Email</a>
                         </li>
+                        {{-- <li>
+                            <a href="email-templates">Email Templates</a>
+                        </li> --}}
                     </ul>
                 </li>
 
@@ -265,6 +268,34 @@
                         </li> --}}
                     </ul>
                 </li>
+
+                <li>
+                    <a href="{{route('userManagement')}}">
+                        <i class="fe-users"></i>
+                        {{-- <span class="badge badge-success badge-pill float-right">4</span> --}}
+                        <span>User Management </span>
+                    </a>
+                </li>
+
+
+
+                <li>
+                    <a href="{{route('faqs')}}">
+                        <i class="fe-bookmark"></i>
+                        {{-- <span class="badge badge-success badge-pill float-right">4</span> --}}
+                        <span>FAQs</span>
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="{{route('siteSettings')}}">
+                        <i class="fe-settings"></i>
+                        {{-- <span class="badge badge-success badge-pill float-right">4</span> --}}
+                        <span> Site Settings </span>
+                    </a>
+                </li>
+
 
                 <li class="menu-title mt-2">Components</li>
 
@@ -563,4 +594,4 @@
     <!-- Sidebar -left -->
 
 </div>
-<!-- Left Sidebar End -->
+<!-- Left Sidebar End

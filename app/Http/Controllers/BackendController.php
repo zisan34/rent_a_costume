@@ -9,6 +9,9 @@ use Calendar;
 
 use App\User;
 use App\Event;
+use App\Sitesetting;
+use App\Faq;
+use App\FaqCategory;
 
 
 class BackendController extends AdminBaseController
@@ -49,10 +52,9 @@ class BackendController extends AdminBaseController
         return view('admin.apps-calendar')->with('calendar',$calendar);
     }
    
-    public function appscontacts(){
-        $this->user=Auth::user();
-        return $this->data;
-       // return view('admin.apps-contacts');
+    public function appscontacts(){        
+       $users =User::all(); 
+       return view('admin.apps-contacts')->with('users',$users);
     }
     public function appstickets(){
         $this->user=Auth::user();
@@ -82,11 +84,104 @@ class BackendController extends AdminBaseController
     {
         //
     }
+
+
+
+
+
+    public function siteSettings()
+    {
+        $settings=Sitesetting::find(1);
+        return view('admin.site-settings')->with('settings',$settings);
+    }
+    public function updatesiteSettings(Request $request)
+    {        
+        $this->validate($request,[
+            'w_name'=>'required|max:255',
+            'w_email'=>'required|email',
+            'w_address'=>'required|string',
+            'w_phone'=>'required|string',
+        ]);
+        
+        $settings=Sitesetting::find(1);
+
+
+        $settings->w_name=$request->w_name;
+        $settings->w_email=$request->w_email;
+        $settings->w_address=$request->w_address;
+        $settings->w_phone=$request->w_phone;
+        $settings->copyright=$request->copyright;
+
+
+        if($request->hasFile('w_logo'))
+        {
+            $w_logo=$request->w_logo;
+            $w_logo_new=time().'_'.$w_logo->getClientOriginalName();
+            $w_logo->move('images',$w_logo_new);
+            $settings->w_logo='/images/'.$w_logo_new; 
+
+        }
+        if($request->hasFile('w_image'))
+        {
+            $w_image=$request->w_image;
+            $w_image_new=time().'_'.$w_image->getClientOriginalName();
+            $w_image->move('images',$w_image_new);
+            $settings->w_image='/images/'.$w_image_new; 
+
+        }
+
+
+        $settings->save();
+
+        return redirect()->route('siteSettings');
+    }
+
+
+    public function userManagement()
+    {
+        $users=User::orderBy('updated_at','desc')->get();
+        return view('admin.user-management')->with('users',$users);
+    }
+
+    public function userDisable($id)
+    {
+        $user_id=decrypt($id);
+        $user=User::find($user_id);
+
+        $user->status=0;
+        $user->save();
+
+        return redirect()->back();
+    }
+
+
+    public function userEnable($id)
+    {
+        $user_id=decrypt($id);
+        $user=User::find($user_id);
+
+        $user->status=1;
+        $user->save();
+
+        return redirect()->back();
+    }
+
     public function dashboard(){
         $this->user=Auth::user();
        // return $this->data;
         return view('admin.ecommerce-dashboard',$this->data);
     }
+
+
+    public function faqs()
+    {
+        $faqs=Faq::all();
+        $faqCategories=FaqCategory::all();
+
+        return view('admin.faqs')->with('faqs',$faqs)
+                                ->with('faqCategories',$faqCategories);
+    }
+
 
     /**
      * Store a newly created resource in storage.

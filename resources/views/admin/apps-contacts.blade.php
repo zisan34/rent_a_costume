@@ -62,18 +62,21 @@
                         <!-- end row -->        
 
                         <div class="row">
+                            @foreach($users as $user)
                             <div class="col-lg-4">
                                 <div class="text-center card-box">
                                     <div class="pt-2 pb-2">
-                                        <img src="assets/images/users/user-3.jpg" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
+                                        <img src="{{$user->image}}" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
 
-                                        <h4 class="mt-3"><a href="extras-profile" class="text-dark">Freddie J. Plourde</a></h4>
-                                        <p class="text-muted">@Founder <span> | </span> <span> <a href="#" class="text-pink">websitename.com</a> </span></p>
+                                        <h4 class="mt-3"><a href="extras-profile" class="text-dark">{{$user->name}}</a></h4>
+                                        <p><strong>Phone:</strong>{{$user->phone}} <span> <br> </span><strong>Email:</strong> <span> <a href="#" class="text-pink">{{$user->email}}</a> </span></p>
+                                        
+                                        <a href="{{ route('email.custom',['email'=>$user->email]) }}" class="btn btn-primary btn-sm waves-effect waves-light">Message</a>
 
-                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light">Message</button>
-                                        <button type="button" class="btn btn-light btn-sm waves-effect">Follow</button>
+                                        {{-- <a href="#" class="btn btn-primary btn-sm waves-effect waves-light">Message</a> --}}
+                                        {{-- <button type="button" class="btn btn-light btn-sm waves-effect">Follow</button> --}}
 
-                                        <div class="row mt-4">
+                                        {{-- <div class="row mt-4">
                                             <div class="col-4">
                                                 <div class="mt-3">
                                                     <h4>$2563</h4>
@@ -92,87 +95,17 @@
                                                     <p class="mb-0 text-muted text-truncate">Followings</p>
                                                 </div>
                                             </div>
-                                        </div> <!-- end row-->
+                                        </div> --}} <!-- end row-->
 
                                     </div> <!-- end .padding -->
                                 </div> <!-- end card-box-->
                             </div> <!-- end col -->
+                            @endforeach
 
-                            <div class="col-lg-4">
-                                <div class="text-center card-box">
-                                    <div class="pt-2 pb-2">
-                                        <img src="assets/images/users/user-4.jpg" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
-
-                                        <h4 class="mt-3"><a href="extras-profile" class="text-dark">Christopher Gallardo</a></h4>
-                                        <p class="text-muted">@Webdesigner  <span> | </span> <span> <a href="#" class="text-pink">abcweb.com</a> </span></p>
-
-                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light">Message</button>
-                                        <button type="button" class="btn btn-light btn-sm waves-effect">Follow</button>
-
-                                        <div class="row mt-4">
-                                            <div class="col-4">
-                                                <div class="mt-3">
-                                                    <h4>$12.7k</h4>
-                                                    <p class="mb-0 text-muted text-truncate">Post</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="mt-3">
-                                                    <h4>$65.3k</h4>
-                                                    <p class="mb-0 text-muted text-truncate">Followers</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="mt-3">
-                                                    <h4>2184</h4>
-                                                    <p class="mb-0 text-muted text-truncate">Followings</p>
-                                                </div>
-                                            </div>
-                                        </div> <!-- end row-->
-
-                                    </div> <!-- end .padding -->
-                                </div> <!-- end card-box-->
-                            </div> <!-- end col -->
-
-                            <div class="col-lg-4">
-                                <div class="text-center card-box">
-                                    <div class="pt-2 pb-2">
-                                        <img src="assets/images/users/user-5.jpg" class="rounded-circle img-thumbnail avatar-xl" alt="profile-image">
-
-                                        <h4 class="mt-3"><a href="extras-profile" class="text-dark">Joseph M. Rohr</a></h4>
-                                        <p class="text-muted">@Webdesigner <span> | </span> <span> <a href="#" class="text-pink">mywebs.com</a> </span></p>
-
-                                        <button type="button" class="btn btn-primary btn-sm waves-effect waves-light">Message</button>
-                                        <button type="button" class="btn btn-light btn-sm waves-effect">Follow</button>
-
-                                        <div class="row mt-4">
-                                            <div class="col-4">
-                                                <div class="mt-3">
-                                                    <h4>$1021</h4>
-                                                    <p class="mb-0 text-muted text-truncate">Post</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="mt-3">
-                                                    <h4>$25.6k</h4>
-                                                    <p class="mb-0 text-muted text-truncate">Followers</p>
-                                                </div>
-                                            </div>
-                                            <div class="col-4">
-                                                <div class="mt-3">
-                                                    <h4>325</h4>
-                                                    <p class="mb-0 text-muted text-truncate">Followings</p>
-                                                </div>
-                                            </div>
-                                        </div> <!-- end row-->
-
-                                    </div> <!-- end .padding -->
-                                </div> <!-- end card-box-->
-                            </div> <!-- end col -->
                         </div>
                         <!-- end row -->
 
-                        <div class="row">
+                        {{-- <div class="row">
                             <div class="col-lg-4">
                                 <div class="text-center card-box">
                                     <div class="pt-2 pb-2">
@@ -419,7 +352,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- end row -->
                         
                     </div> <!-- container -->

@@ -51,6 +51,36 @@ Route::group(['prefix' => 'admin/', 'middleware'=>'auth'], function() {
 	Route::get('event/show/{id}','EventsController@show')->name('event.show');
 	Route::get('event/delete/{id}','EventsController@delete')->name('event.delete');
 
+
+	Route::get('email/compose/{email}','EmailsController@customMail')->name('email.custom');
+
+	Route::get('email/multiple','EmailsController@multipleEmail')->name('email.multiple');
+
+	Route::post('email/custom/send','EmailsController@sendCustomMail')->name('email.custom.send');
+
+	Route::post('email/multiple/send','EmailsController@sendMultipleMail')->name('email.multiple.send');
+
+	Route::get('site-settings','BackendController@siteSettings')->name('siteSettings');
+	Route::post('site-settings/update','BackendController@updatesiteSettings')->name('siteSettings.update');
+
+
+	Route::get('user-management','BackendController@userManagement')->name('userManagement');
+	Route::get('user-management/user/disable/{id}','BackendController@userDisable')->name('user.disable');
+	Route::get('user-management/user/enable/{id}','BackendController@userEnable')->name('user.enable');
+
+	Route::get('faqs','BackendController@faqs')->name('faqs');
+
+	Route::post('faq/add','FaqsController@store')->name('faq.add');
+	Route::get('faq/show/{id}','FaqsController@show')->name('faq.show');
+	Route::post('faq/edit','FaqsController@update')->name('faq.edit');
+	Route::get('faq/delete/{id}','FaqsController@destroy')->name('faq.delete');
+
+
+
+
+	Route::get('{any}','BackendController@index')->name('dashboard');
+	
+
 });
 Route::get('showlast_product', 'CustomerProductController@showlast');
 Route::get('showfeatured_product', 'CustomerProductController@showfeatured');
