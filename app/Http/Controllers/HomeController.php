@@ -12,6 +12,10 @@ use CyrildeWit\EloquentViewable\Support\Period;
 use CyrildeWit\EloquentViewable\Viewable;
 use DB;
 
+use App\SiteSetting;
+use App\Faq;
+use App\FaqCategory;
+
 class HomeController extends Controller
 {
     /**
@@ -33,6 +37,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $siteSettings=SiteSetting::find(1);
+        return view('index')->with('siteSettings',$siteSettings);
+    }
+    public function faqs()
+    {
+        return view('faqs')->with('faqCategories',FaqCategory::all());  
         $this->products = Product::all();
         $this->product_featureds = Product::orderBy('price', 'desc')->paginate(10);
         // $this->top_viewed_month=Product::orderByViews()->get();
