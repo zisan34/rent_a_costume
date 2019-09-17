@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\SiteSetting;
+
 class HomeController extends Controller
 {
     /**
@@ -23,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $siteSettings=SiteSetting::find(1);
+        return view('index')->with('siteSettings',$siteSettings);
     }
 }

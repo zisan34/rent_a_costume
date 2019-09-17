@@ -69,6 +69,8 @@ Route::group(['prefix' => 'admin/', 'middleware'=>'admin'], function() {
 
 });
 
+Route::get('/support','CustomerQueriesController@index')->name('support');
+
 
 Auth::routes();
 

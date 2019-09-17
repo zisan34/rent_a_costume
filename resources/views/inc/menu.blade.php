@@ -12,7 +12,8 @@
                     <div class="ct-header-logo">
                         <a href="{{ route('home') }}">
                             {{-- {{env('APP_NAME')}} --}}
-                            <img src="{{ asset('assets/images/demo-content/logo.png') }}" alt="Diana Logo">
+                            {{$siteSettings->w_name}}
+                            <img src="{{ asset($siteSettings->w_image) }}" alt="Diana Logo">
                         </a>
                     </div>
                 </div>
@@ -145,6 +146,7 @@
                             </ul>
                         </li>
                         <li><a href="contact.html">Contact</a></li>
+                        <li><a href="{{ route('support') }}">24x7 Support Center</a></li>
                     </ul>
                     <div id="ct-js-navSearch" class="ct-navbar-navSearch navbar-search pull-right">
                         <i class="fa fa-fw fa-search"></i>
