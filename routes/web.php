@@ -17,10 +17,11 @@ Route::get('/','HomeController@index');
 Route::any('logout','HomeController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin/', 'middleware'=>'auth'], function() {
-	Route::get('adminDashboard', 'BackEndController@dashboard')->name('admin.dashboard');
-	Route::any('apps-calendar', 'BackEndController@calendar');
 
+Route::group(['prefix' => 'admin/', 'middleware'=>'admin'], function() {
+	Route::get('adminDashboard','BackEndController@dashboard')->name('admin.dashboard');
+
+  Route::get('apps-calendar','BackEndController@calendar')->name('app.calendar');
 
 	Route::get('apps-contacts', 'BackEndController@appscontacts');
 	Route::get('apps-tickets', 'BackEndController@appstickets');
@@ -89,6 +90,7 @@ Route::any('showall_product', 'CustomerProductController@showall');
 Route::any('single_product/{id}', 'CustomerProductController@singleshow');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('addto_card', 'CartController@add');
+
 });
 
 
