@@ -22,6 +22,7 @@ class HomeController extends Controller
     public function __construct()
     {
         //  $this->middleware('auth')->except('index');
+        parent::__construct();
         $this->site_setting = DB::table('site_settings')->first();
     }
 

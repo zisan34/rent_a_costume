@@ -12,6 +12,17 @@ class Product extends Model
     public function category(){
         return $this->belongsTo('App\ProductCategory','category_id');
     }
+    public function brand(){
+        return $this->belongsTo('App\Brand','brand_id');
+    }
+    public function img($id){
+        $img=Image::where('type','App\Product')->where('type_id',$id)->get();
+        return $img;
+    }
+    public function img_count($id){
+        $img = Image::where('type', 'App\Product')->where('type_id', $id)->count();
+        return $img;
+    }
     public static function store($data){
         try{
             $product = new Product;

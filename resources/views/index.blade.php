@@ -90,17 +90,19 @@
                                 <div class="ct-productShop-category">
                                     <span class="ct-productShop-h5">{{$pro->product_name}}</span>
                                     <div class="clearfix"></div>
+                                    @if($pro->img_count($pro->id)>0)
                                     <img class="ct-js-zoomImage" src="{{ asset('upload/product/'.$image->image) }}" data-zoom-image="{{ asset('upload/product/'.$image->image) }}" alt="{{ asset('assets/images/demo-content/featured-item1-large.jpg') }}">
+                                    @endif
                                 </div>
                                 <div class="ct-productShop-content">
                                     <div class="ct-productShop-content-description">
-                                        <a href="single-product.html">
+                                        <a href="{{url('')}}">
                                             <h3>{{$pro->description}}</h3>
                                             <span> ${{$pro->price}}</span>
                                         </a>
                                         <span class="ct-productShop-shopCart">
                                             <a class="btn btn-default" href="my-cart.html" role="button"><i class="fa fa-shopping-cart fa-fw"></i></a>
-                                            <a class="btn btn-default btn-hidden" href="single-product.html" role="button"><i class="fa fa-chain fa-fw"></i></a>
+                                            <a class="btn btn-default btn-hidden" href="{{url('')}}" role="button"><i class="fa fa-chain fa-fw"></i></a>
                                         </span>
                                     </div>
                                 </div>
@@ -127,6 +129,7 @@
                                 <div class="ct-u-marginBoth20">
                                     <a href="#">
                                         <div class="ct-highlightsItem">
+                                            @if($high->img_count($high->id)>0)
                                             <div class="ct-highlightsItem-content" data-bg="{{ asset('upload/product/'.$img->image) }}">
                                                 <span class="ct-highlightsItem-content-firstTitle ct-u-size30 text-uppercase">{{$high->product_name}}</span>
                                                 <br>
@@ -134,6 +137,7 @@
                                                 <br>
                                                 <span class="ct-highlightsItem-content-thirdTitle ct-u-size16">] ${{$high->price}}</span>
                                             </div>
+                                            @endif
                                         </div>
                                     </a>
                                 </div>
@@ -159,7 +163,9 @@
                                 <div class="ct-productShop-category">
                                     <span class="ct-productShop-h5">{{$product->product_name}}</span>
                                     <div class="clearfix"></div>
+                                    @if($product->img_count($product->id)>0)
                                     <img class="" src="{{ asset('upload/product/'.$im->image) }}" data-zoom-image="{{ asset('upload/product/'.$im->image) }}" alt="">
+                                    @endif
                                 </div>
                                 <div class="ct-productShop-content">
                                     <div class="ct-productShop-content-description">
@@ -186,11 +192,14 @@
 
                 <div class="ct-u-paddingBottom20 ct-u-paddingTop35">
                     <div class="ct-js-owl owl-carousel ct-productCarousel ct-productCarousel--arrowsTop" data-single="false" data-pagination="false" data-navigation="true" data-items="4" data-snap-ignore="true">
+
+                        
                         <div class="item">
                             <div class="ct-productShop ct-productShop--zoom">
                                 <div class="ct-productShop-category">
                                     <span class="ct-productShop-h5">Rings</span>
                                     <div class="clearfix"></div>
+
                                     <img class="ct-js-zoomImage" src="{{ asset('assets/images/demo-content/rated-item1.jpg') }}" data-zoom-image="{{ asset('assets/images/demo-content/rated-item1-large.jpg') }}" alt="">
                                 </div>
                                 <div class="ct-productShop-content">

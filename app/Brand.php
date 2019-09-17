@@ -4,11 +4,19 @@ namespace App;
 
 use Exception;
 use Illuminate\Database\Eloquent\Model;
+use App\Product;
 
 class Brand extends Model
 {
     public function category(){
         return $this->belongsTo('App\ProductCategory','product_category_id');
+    }
+    public function product(){
+        return $this->hasMany('App\Product','brand_id');
+    }
+    public function product_count($id){
+        $p=Product::where('brand_id',$id)->count();
+        return $p;
     }
     public static function store($data){
         try{

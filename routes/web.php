@@ -52,6 +52,14 @@ Route::group(['prefix' => 'admin/', 'middleware'=>'auth'], function() {
 	Route::get('event/delete/{id}','EventsController@delete')->name('event.delete');
 
 });
+Route::get('showlast_product', 'CustomerProductController@showlast');
+Route::get('showfeatured_product', 'CustomerProductController@showfeatured');
+Route::get('showtop_product', 'CustomerProductController@showtop');
+Route::any('showall_product', 'CustomerProductController@showall');
+Route::any('single_product/{id}', 'CustomerProductController@singleshow');
+Route::group(['middleware' => 'auth'], function () {
+	Route::get('addto_card', 'CartController@add');
+});
 
 
 Auth::routes();
