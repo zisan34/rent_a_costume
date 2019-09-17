@@ -1,5 +1,9 @@
 @extends('layouts.app')
-
+@php
+    //  $all_products=App\Product::paginate(10);
+    //     $all_brands=App\Brand::paginate(10);
+    //     $all_category=App\ProductCategory::paginate(10);
+@endphp
 @section('content')
 
 <div class="container">

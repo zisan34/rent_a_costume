@@ -58,24 +58,45 @@
                     </ul>
                 </li>
 
-                <li>
+              <li>
                     <a href="javascript: void(0);">
                         <i class="fe-users"></i>
                         <span> Products Category and Brands </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        {{-- <li>
-                            <a href="crm-dashboard">Dashboard</a>
-                        </li> --}}
+                        
                         <li>
-                            <a href="{{url('admin/crm-contacts')}}">Category</a>
+                            <a href="javascript: void(0);">
+                                 <span> Category  </span>
+                                 <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li><a href="{{url('admin/showCat')}}">Show all Category</a></li>
+                                <li><a href="{{url('admin/addCategory')}}"">Add Category</a></li>
+                                <li><a href="{{url('admin/editCategory')}}">Edit Category</a></li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="crm-opportunities">Brands</a>
+                            <a href="javascript: void(0);">
+                                 <span>  Brands </span>
+                                 <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                 <li><a href="{{url('admin/showBrand')}}">Show all Brand</a></li>
+                                <li><a href="{{url('admin/addBrand')}}">Add Brands</a> </li>
+                                <li><a href="{{url('admin/editBrand')}}">Brands</a>  </li>
+                            </ul>
                         </li>
                         <li>
-                            <a href="crm-leads">Leads</a>
+                             <a href="javascript: void(0);">
+                                 <span>  Faqs </span>
+                                 <span class="menu-arrow"></span>
+                            </a>
+                            <ul class="nav-second-level" aria-expanded="false">
+                                <li>Add Faqs </li>
+                                <li>Edit Faqs </li>
+                            </ul>
                         </li>
                        
                     </ul>
