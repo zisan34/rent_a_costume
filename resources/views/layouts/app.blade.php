@@ -17,6 +17,10 @@
 
 
     <script src="{{asset('assets/js/modernizr.custom.js')}}"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    {{-- <script src="{{asset('js/notify.min.js')}}"></script> --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 
 <body class="ct-headroom--scrollUpBoth cssAnimate">
@@ -30,7 +34,7 @@
     @include('inc.mobile-menu')
 
     <div id="ct-js-wrapper" class="ct-pageWrapper">
-        
+
         <!-- navbar + logo menu -->
         <div class="ct-navbarMobile">
             <button type="button" class="navbar-toggle">
@@ -41,7 +45,7 @@
             </button>
 
             {{-- company logo --}}
-            <a class="navbar-brand" href="index-2.html"><img src="{{ asset('assets/images/demo-content/logo.png') }}" alt="Diana Logo"> </a>
+            <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('assets/images/demo-content/logo.png') }}" alt="Diana Logo"> </a>
             <button type="button" class="navbarShop-toggle">
                 <i class="fa fa-fw fa-user"></i>
             </button>
@@ -56,7 +60,7 @@
 
         {{-- contents --}}
 
-        @yield('contents')
+        @yield('content')
 
         <!-- FOOTER -->
         @include('inc.footer')

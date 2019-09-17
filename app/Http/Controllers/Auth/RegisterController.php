@@ -7,9 +7,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use DB;
+
 
 class RegisterController extends Controller
 {
+
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -28,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -37,9 +41,16 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
+        $this->countries=DB::table('countries')->get();
+        $this->cities=DB::table('cities')->get();
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+        return view('auth.register',$this->data);
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -52,6 +63,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'country'=>['required','integer'],
+            'city'=>['required','integer'],
+            'gender'=>['required','string'],
         ]);
     }
 
@@ -67,6 +81,11 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'phone'=>$data['phone'],
+            'country_id'=>$data['country'],
+            'city_id'=>$data['city'],
+            'gender'=>$data['gender'],
+
         ]);
     }
 }
