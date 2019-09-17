@@ -50,4 +50,8 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\City');
     }
+    public function queries()
+    {
+        return $this->hasMany('App\CustomerQuery');
+    }
 }

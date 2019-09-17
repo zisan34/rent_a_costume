@@ -69,7 +69,21 @@ Route::group(['prefix' => 'admin/', 'middleware'=>'admin'], function() {
 
 });
 
-Route::get('/support','CustomerQueriesController@index')->name('support');
+
+Route::get('faqs','HomeController@faqs')->name('faqs');
+
+Route::group(['prefix' => 'support/', 'middleware'=>'auth'], function() {
+
+	Route::get('/','CustomerQueriesController@index')->name('support');
+
+	Route::post('store','CustomerQueriesController@store')->name('support.store');
+
+	Route::post('comment','CustomerQueriesController@addComment')->name('support.comment');
+
+	Route::get('view/{id}','CustomerQueriesController@show')->name('support.show');
+
+});
+
 
 
 Auth::routes();

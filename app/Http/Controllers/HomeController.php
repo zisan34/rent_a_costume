@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\SiteSetting;
+use App\Faq;
+use App\FaqCategory;
 
 class HomeController extends Controller
 {
@@ -27,5 +29,9 @@ class HomeController extends Controller
     {
         $siteSettings=SiteSetting::find(1);
         return view('index')->with('siteSettings',$siteSettings);
+    }
+    public function faqs()
+    {
+        return view('faqs')->with('faqCategories',FaqCategory::all());   
     }
 }
