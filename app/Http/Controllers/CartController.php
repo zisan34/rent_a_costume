@@ -84,7 +84,10 @@ class CartController extends Controller
         return ['status' => 'okay','total' =>$total];
     }
     public function checkout(Request $request){
-       
+        $my=Auth::user();
+        if($my->status==0){
+            return 'You are inactive user';
+        }
         $product=Product::find($request->pro_id);
         $subTotal = Cart::getSubTotal();
         $d = DB::table('orders_settings')->first();
