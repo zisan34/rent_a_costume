@@ -9,6 +9,7 @@ use Calendar;
 
 use App\User;
 use App\Event;
+use App\Order;
 use App\Sitesetting;
 use App\Faq;
 use App\FaqCategory;
@@ -75,7 +76,8 @@ class BackendController extends AdminBaseController
         return view('admin.ecommerce-product-edit');
     }
     public function ecommerceorders(){
-        return view('admin.ecommerce-orders');
+        $this->orders=Order::paginate(10);
+        return view('admin.total_order',$this->data);
     }
     public function ecommercesellers(){
         return view('admin.ecommerce-sellers');

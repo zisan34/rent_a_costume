@@ -23,6 +23,7 @@ class ProductController extends AdminBaseController
         $this->category=ProductCategory::all();
         return view('admin.product.showform',$this->data);
     }
+    
     public function ecommerceprductdetail($code)
     {   $code=urldecode($code);
         $this->product=Product::where('unique_code',$code)->first();
@@ -65,7 +66,7 @@ class ProductController extends AdminBaseController
             'categorypicker' => 'required',
            
         ]);
-        return $request;
+      //  return $request;
         if(($request->categorypicker)== 'other'){
             Session::flash('message', 'Select Category');
             return redirect()->back()->withInput();

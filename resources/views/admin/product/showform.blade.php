@@ -83,7 +83,7 @@
                                         <p class="text-muted text-center mt-2 mb-0">Image 1</p>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 float-left">
+                                {{-- <div class="col-lg-4 float-left">
                                     <div class="mt-3">
                                         <input type="file" name="image2" class="dropify"  />
                                         <p class="text-muted text-center mt-2 mb-0">Image 2</p>
@@ -94,7 +94,7 @@
                                         <input type="file" name="image3" class="dropify"  />
                                         <p class="text-muted text-center mt-2 mb-0">Image 3</p>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="switchery-demo">
                                     <label for="">Status</label>
                                     <input type="checkbox" checked data-plugin="switchery" name="status" value='true' data-color="#1bb99a"/>

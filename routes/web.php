@@ -32,7 +32,7 @@ Route::group(['prefix' => 'admin/', 'middleware'=>'auth'], function() {
 	Route::post('product_save', 'ProductController@product_save');
 	Route::post('product_edit', 'ProductController@store');
 
-	Route::get('ecommerce-orders', 'BackEndController@ecommerceorders');
+	Route::get('total_orders', 'BackEndController@ecommerceorders');
 	Route::get('ecommerce-sellers', 'BackEndController@ecommercesellers');
 	Route::get('addCategory', 'CategoryBrandController@addCategory');
 	Route::get('addBrand', 'CategoryBrandController@addBrand');
@@ -89,6 +89,11 @@ Route::any('showall_product', 'CustomerProductController@showall');
 Route::any('single_product/{id}', 'CustomerProductController@singleshow');
 Route::group(['middleware' => 'auth'], function () {
 	Route::get('addto_card', 'CartController@add');
+	Route::get('mycart','CartController@show_cart');
+	Route::get('check_end_date', 'CartController@check_end_date');
+	Route::post('checkout', 'CartController@checkout');
+	Route::get('removecart/{id}','CartController@remove');
+	route::post('submit_rating', 'CartController@submit_rating');
 });
 
 

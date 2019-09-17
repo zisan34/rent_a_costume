@@ -1,26 +1,6 @@
     <div class="ct-shopMenuMobile">
         <!-- Language Dropdown -->
-        {{-- <div class="btn-group">
-            <button type="button" class="btn btn-white btn-md dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                EN <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="#">FR</a></li>
-                <li><a href="#">ES</a></li>
-                <li><a href="#">DE</a></li>
-                <li><a href="#">PT</a></li>
-            </ul>
-        </div> --}}
-        <!-- Currency Dropdown -->
-        {{-- <div class="btn-group">
-            <button type="button" class="btn btn-white btn-md dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                $ <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu" role="menu">
-                <li><a href="#">EUR €</a></li>
-                <li><a href="#">GBP £</a></li>
-            </ul>
-        </div> --}}
+       
         <nav class="ct-shopMenuMobile-navbar">
             <ul class="list-unstyled">
                 @guest
@@ -36,15 +16,23 @@
                 @endif
                 @endauth
 
-                <li><a href="my-account.html"><i class="fa fa-cog fa-fw"></i> My Account</a></li>
-                <li><a href="wishlist.html"><i class="fa fa-edit fa-fw"></i> Wishlist</a></li>
-                <li><a href="checkout.html"><i class="fa fa-archive fa-fw"></i> Checkout</a></li>
             </ul>
         </nav>
         <div class="ct-shopMenuMobile-basket">
             <a href="my-cart.html"><i class="fa fa-shopping-cart fa-fw"></i> My Basket <span class="ct-topBar-basket-quantity">(3 items)</span></a>
             <div class="ct-shopMenuMobile-basketContainer">
                 <ul class="ct-shopMenuMobile-basketProducts list-unstyled">
+                    @php
+                        $myCartCollection =0;
+                        $myCartSubtotal =0;
+                        $mycartTotalQuantity =0;
+                        $myTotal =0;
+                        if(!Cart::isEmpty()){
+                            $myCartCollection = Cart::getContent();
+                            $myTotal = Cart::getTotal();
+                        }
+                      // print_r($myCartCollection->toArray());
+                    @endphp
                     <li class="ct-shopMenuMobile-basketProduct">
                         <a href="single-product.html">
                             <img class="pull-left" src="{{ asset('assets/images/demo-content/mobile-shop-cart-ring1.png') }}" alt="">

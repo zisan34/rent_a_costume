@@ -24,7 +24,7 @@
                     
                 </div>
             </div>
-            <div class="item" data-bg="{{ asset('assets/images/demo-content/slider-image.png') }}">
+            {{-- <div class="item" data-bg="{{ asset('assets/images/demo-content/slider-image.png') }}">
                 <div class="inner">
                     <div class="container">
                         <div class="row">
@@ -39,39 +39,9 @@
                     </div>
                    
                 </div>
-            </div>
-            <div class="item" data-bg="{{ asset('assets/images/demo-content/slider-image.png') }}">
-                <div class="inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-4 col-sm-12">
-                                <h1 class="text-right ct-u-colorWhite animated" data-fx="fadeInRight">Have Looks</h1>
-                                <h2 class="text-right ct-u-colorWhite animated" data-fx="fadeInRightBig">For Future Revulation in Dressing</h2>
-                                <div class="text-right ct-mobileCenter ct-u-paddingTop40">
-                                   <a class="btn btn-blackTransparent btn-blackTransparent--white animated" data-fx="bounceInUp" href="{{url('showfeatured_product')}}" role="button">Browse featured Collection <i class="fa fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   
-                </div>
-            </div>
-            <div class="item" data-bg="{{ asset('assets/images/demo-content/slider-image.png') }}">
-                <div class="inner">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-12 text-left">
-                                <h1 class="ct-u-colorWhite animated" data-fx="fadeInLeft">Unique Design and Fashion</h1>
-                                <h2 class="ct-u-colorWhite animated" data-fx="fadeInLeftBig">Large Selection</h2>
-                                <div class="text-left ct-mobileCenter ct-u-paddingTop40">
-                                    <a class="btn btn-transparentWhite animated" data-fx="bounceInUp" href="{{url('showtop_product')}}" role="button">Browse Top Collection <i class="fa fa-angle-double-right"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                   
-                </div>
-            </div>
+            </div> --}}
+           
+           
         </div>
 
         <div class="ct-contentWrapper">
@@ -96,13 +66,13 @@
                                 </div>
                                 <div class="ct-productShop-content">
                                     <div class="ct-productShop-content-description">
-                                        <a href="{{url('')}}">
+                                        <a  href="{{url('single_product/'.urlencode($pro->id))}}">
                                             <h3>{{$pro->description}}</h3>
                                             <span> ${{$pro->price}}</span>
                                         </a>
                                         <span class="ct-productShop-shopCart">
-                                            <a class="btn btn-default" href="my-cart.html" role="button"><i class="fa fa-shopping-cart fa-fw"></i></a>
-                                            <a class="btn btn-default btn-hidden" href="{{url('')}}" role="button"><i class="fa fa-chain fa-fw"></i></a>
+                                            <a class="btn btn-default" onclick="addto_card('{{$pro->id}}')" role="button"><i class="fa fa-shopping-cart fa-fw"></i></a>
+                                            <a class="btn btn-default btn-hidden" href="{{url('single_product/'.urlencode($pro->id))}}" role="button"><i class="fa fa-chain fa-fw"></i></a>
                                         </span>
                                     </div>
                                 </div>
@@ -127,7 +97,7 @@
                     
                             <div class="col-md-4">
                                 <div class="ct-u-marginBoth20">
-                                    <a href="#">
+                                    <a href="{{url('single_product/'.urlencode($high->id))}}">
                                         <div class="ct-highlightsItem">
                                             @if($high->img_count($high->id)>0)
                                             <div class="ct-highlightsItem-content" data-bg="{{ asset('upload/product/'.$img->image) }}">
@@ -169,13 +139,13 @@
                                 </div>
                                 <div class="ct-productShop-content">
                                     <div class="ct-productShop-content-description">
-                                        <a href="single-product.html">
+                                        <a href="{{url('single_product/'.urlencode($product->id))}}">
                                             <h3>{{$product->description}}</h3>
                                             <span>${{$product->price}}</span>
                                         </a>
                                         <span class="ct-productShop-shopCart">
-                                            <a class="btn btn-default" href="my-cart.html" role="button"><i class="fa fa-shopping-cart fa-fw"></i></a>
-                                            <a class="btn btn-default btn-hidden" href="single-product.html" role="button"><i class="fa fa-chain fa-fw"></i></a>
+                                            <a class="btn btn-default" onclick="addto_card('{{$product->id}}')" role="button"><i class="fa fa-shopping-cart fa-fw"></i></a>
+                                            <a class="btn btn-default btn-hidden" href="{{url('single_product/'.urlencode($product->id))}}" role="button"><i class="fa fa-chain fa-fw"></i></a>
                                         </span>
                                     </div>
                                 </div>
@@ -188,39 +158,26 @@
                 </div>
 
                 <!-- THIRD SHOP ELEMENTS SLIDER - TOP RATED PRODUCTS -->
-                <h4 class="ct-headerBox text-center ct-u-borderBottom3  ct-u-paddingBottom15 ct-u-paddingTop55">Top Rated Products</h4>
-
-                <div class="ct-u-paddingBottom20 ct-u-paddingTop35">
-                    <div class="ct-js-owl owl-carousel ct-productCarousel ct-productCarousel--arrowsTop" data-single="false" data-pagination="false" data-navigation="true" data-items="4" data-snap-ignore="true">
-
-                        
-                        <div class="item">
-                            <div class="ct-productShop ct-productShop--zoom">
-                                <div class="ct-productShop-category">
-                                    <span class="ct-productShop-h5">Rings</span>
-                                    <div class="clearfix"></div>
-
-                                    <img class="ct-js-zoomImage" src="{{ asset('assets/images/demo-content/rated-item1.jpg') }}" data-zoom-image="{{ asset('assets/images/demo-content/rated-item1-large.jpg') }}" alt="">
-                                </div>
-                                <div class="ct-productShop-content">
-                                    <div class="ct-productShop-content-description">
-                                        <a href="single-product.html">
-                                            <h3>Princess-Cut  Framed Milgrain Ring in 14K White Gold</h3>
-                                            <span>$245.90</span>
-                                        </a>
-                                        <span class="ct-productShop-shopCart">
-                                            <a class="btn btn-default" href="my-cart.html" role="button"><i class="fa fa-shopping-cart fa-fw"></i></a>
-                                            <a class="btn btn-default btn-hidden" href="single-product.html" role="button"><i class="fa fa-chain fa-fw"></i></a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                       
-                    </div>
-                </div>
+              
             </div>
         </div>
 
-
+<script>
+function addto_card(id){
+    event.preventDefault();
+    $.ajax({
+        type:'get',
+        url:'{{url('addto_card')}}',
+        data:{'id':id},
+        success:function(res){
+            console.log(res);
+            if(res=='success'){
+                alert('cart Added');
+            }else{
+                alert("Cart not Added, please try again later!");
+            }
+        }
+    })
+}
+</script>
 @endsection
