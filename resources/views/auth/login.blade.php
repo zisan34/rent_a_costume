@@ -68,18 +68,13 @@
                     </div>
                 </div>
             </form>
-        </div>
-        <div class="col-md-4">
-            <h4 class="ct-headerBox ct-u-borderBottom ct-u-paddingBottom20 text-left ct-u-paddingTop50">Follow Us</h4>
-            <div class="ct-u-paddingBottom20 ct-u-paddingTop30">
-                <ul class="ct-socials ct-socials--small ct-socials--black list-inline list-unstyled">
-                      <li><a href="https://www.facebook.com/createITpl"><i class="fa fa-facebook fa-fw"></i></a></li>
-                    <li><a href="https://twitter.com/createitpl"><i class="fa fa-twitter fa-fw"></i></a></li>
-                    <li><a href="#"><i class="fa fa-rss fa-fw"></i></a></li>
-                </ul>
-            </div>
-            <div class="tweets_display">
+            <div class="form-group">
+                <div for="password" class="col-sm-2"></div>
+                <div class="col-sm-10">
 
+                <h4 class="ct-headerBox ct-u-borderBottom ct-u-paddingBottom20 text-left ct-u-paddingTop50">Or</h4>
+                <a href="{{ route('register') }}" class="btn btn-default"> Create an account</a>
+                </div>
             </div>
         </div>
     </div>

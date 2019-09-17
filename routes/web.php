@@ -95,6 +95,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 Route::get('faqs','HomeController@faqs')->name('faqs');
+Route::get('about','HomeController@aboutUs')->name('about');
+Route::get('mission','HomeController@mission')->name('mission');
 
 Route::group(['prefix' => 'support/', 'middleware'=>'auth'], function() {
 

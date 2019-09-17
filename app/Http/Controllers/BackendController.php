@@ -101,6 +101,11 @@ class BackendController extends AdminBaseController
             'w_email'=>'required|email',
             'w_address'=>'required|string',
             'w_phone'=>'required|string',
+            'w_about'=>'required',
+            'w_mission'=>'required',
+            'w_facebook'=>'nullable|url',
+            'w_youtube'=>'nullable|url',
+            'w_twitter'=>'nullable|url',
         ]);
         
         $settings=Sitesetting::find(1);
@@ -111,6 +116,11 @@ class BackendController extends AdminBaseController
         $settings->w_address=$request->w_address;
         $settings->w_phone=$request->w_phone;
         $settings->copyright=$request->copyright;
+        $settings->w_about=$request->w_about;
+        $settings->w_mission=$request->w_mission;
+        $settings->w_facebook=$request->w_facebook;
+        $settings->w_youtube=$request->w_youtube;
+        $settings->w_twitter=$request->w_twitter;
 
 
         if($request->hasFile('w_logo'))

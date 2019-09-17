@@ -49,7 +49,7 @@ class EventsController extends Controller
 		    $request->startdate, //start time, must be a DateTime object or valid DateTime format (http://bit.ly/1z7QWbg)
 		    $request->enddate, //end time, must be a DateTime object or valid DateTime format (http://bit.ly/1z7QWbg), //optional event ID
 			[
-				'url' => route('home')
+				'url' => route('event.show',['id'=>$event->id])
 			]
 		);
 

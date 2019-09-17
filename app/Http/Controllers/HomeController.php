@@ -37,8 +37,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $siteSettings=SiteSetting::find(1);
-        return view('index')->with('siteSettings',$siteSettings);
+        $this->products = Product::all();
+        $this->product_featureds = Product::orderBy('price', 'desc')->paginate(10);
+        // $this->top_viewed_month=Product::orderByViews()->get();
+        $this->last_products = Product::orderBy('created_at', 'desc')->paginate(10);
+        $this->highlights = Product::orderBy('highlight', 'desc')->paginate(10);
+
+        return view('index', $this->data);
     }
     public function faqs()
     {
@@ -50,6 +55,14 @@ class HomeController extends Controller
         $this->highlights = Product::orderBy('highlight', 'desc')->paginate(10);
 
         return view('index', $this->data);
+    }
+    public function aboutUs()
+    {
+        return view('about');
+    }
+    public function mission()
+    {
+        return view('mission');
     }
     public function logout(Request $request)
     {

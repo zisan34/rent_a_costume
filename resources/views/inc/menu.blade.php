@@ -39,11 +39,11 @@
                                             <div class="col-md-4 col-sm-6">
                                                 <h5 class="text-uppercase"><strong>Products</strong><br><small>Brands</small></h5>
                                                 <ul class="list-unstyled">
-                                                    @if($all_brands)
+                                                    @isset($all_brands)
                                                        @foreach($all_brands as $b)
                                                              <li><a href="{{url('all_brands/'.urlencode($b->id))}}"> {{$b->brand_name}}</a></li>
                                                         @endforeach
-                                                    @endif
+                                                    @endisset
                                                    
                                                 </ul>
                                                 <div class="clearfix"></div>
@@ -51,12 +51,12 @@
                                             <div class="col-md-4 col-sm-6">
                                                 <h5 class="text-uppercase"><strong>Products</strong><br><small>Category</small></h5>
                                                 <ul class="list-unstyled">
-                                                    @if($all_category)
+                                                    @isset($all_category)
                                                         @foreach($all_category as $c)
 
                                                             <li><a href="{{url('all_category/'.urlencode($c->id))}}"> {{$c->category_name}}</a></li>
                                                         @endforeach
-                                                    @endif
+                                                    @endisset
                                                    
                                                 </ul>
                                             </div>

@@ -9,16 +9,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <title>{{env('APP_NAME')}}</title>
-    <script src="{{ asset('assets/cdn-cgi/apps/head/sxN6HgCn8v7CG45Nsym8imDXilk.js') }}"></script><link rel="stylesheet" href="{{ asset('assets/fonts/font-awesome/css/font-awesome.min.css') }}"/>
+    <title>{{$siteSettings->w_name}}</title>
+    <link rel="icon" type="image/gif" href="{{ asset($siteSettings->w_logo) }}" />
+
+    <link rel="stylesheet" href="{{ asset('assets/fonts/font-awesome/css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/bootstrap.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/select2.css')}}">
 
 
-    <script src="{{asset('assets/js/modernizr.custom.js')}}"></script>
     
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     {{-- <script src="{{asset('js/notify.min.js')}}"></script> --}}
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
@@ -45,7 +45,7 @@
             </button>
 
             {{-- company logo --}}
-            <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('assets/images/demo-content/logo.png') }}" alt="Diana Logo"> </a>
+            <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset($siteSettings->w_image) }}" alt="Diana Logo"></a>
             <button type="button" class="navbarShop-toggle">
                 <i class="fa fa-fw fa-user"></i>
             </button>
@@ -97,6 +97,13 @@
     <script src="{{ asset('assets/js/elevate-zoom/init.js') }}"></script>
 
     <script src="{{ asset('assets/js/main.js') }}"></script>
+
+    <script src="{{ asset('assets/cdn-cgi/apps/head/sxN6HgCn8v7CG45Nsym8imDXilk.js') }}"></script>
+
+    <script src="{{asset('assets/js/modernizr.custom.js')}}"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 
     
 

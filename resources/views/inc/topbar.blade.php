@@ -3,7 +3,7 @@
             <div class="container">
                 <div class="ct-topBar-navigation pull-left">
                     <ul class="list-unstyled">
-                        <li><i class="fa fa-fw fa-phone"></i> Call us: (012) 345-6789</li>
+                        <li><i class="fa fa-fw fa-phone"></i> Call us: {{$siteSettings->w_phone}}</li>
                         @guest
                         <li><a href="{{ route('login') }}"><i class="fa fa-fw fa-user"></i> Login</a></li>
                         <li><a href="{{ route('register') }}"><i class="fa fa-fw fa-pencil"></i> Create an account</a></li>
