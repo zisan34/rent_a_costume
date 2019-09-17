@@ -1,6 +1,6 @@
     <div class="ct-shopMenuMobile">
         <!-- Language Dropdown -->
-        <div class="btn-group">
+        {{-- <div class="btn-group">
             <button type="button" class="btn btn-white btn-md dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 EN <span class="caret"></span>
             </button>
@@ -10,9 +10,9 @@
                 <li><a href="#">DE</a></li>
                 <li><a href="#">PT</a></li>
             </ul>
-        </div>
+        </div> --}}
         <!-- Currency Dropdown -->
-        <div class="btn-group">
+        {{-- <div class="btn-group">
             <button type="button" class="btn btn-white btn-md dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                 $ <span class="caret"></span>
             </button>
@@ -20,14 +20,14 @@
                 <li><a href="#">EUR €</a></li>
                 <li><a href="#">GBP £</a></li>
             </ul>
-        </div>
+        </div> --}}
         <nav class="ct-shopMenuMobile-navbar">
             <ul class="list-unstyled">
                 @guest
                 <li><a href="{{ route('login') }}"><i class="fa fa-user fa-fw"></i> Login</a></li>
                 <li><a href="{{ route('register') }}"><i class="fa fa-pencil fa-fw"></i> Create an account</a></li>
                 @else
-                <li><a href="login.html"><i class="fa fa-user fa-fw"></i> Logout</a></li>
+                <li><a href="{{url('logout')}}"><i class="fa fa-user fa-fw"></i> Logout</a></li>
                 @endguest
 
                 @auth

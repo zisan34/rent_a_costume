@@ -2,10 +2,10 @@
         <ul class="ct-menuMobile-navbar">
             <li class="dropdown">
                 <a href="{{ route('home') }}"><i class="fa fa-home fa-fw"></i> Home</a>
-                <ul class="dropdown-menu">
+                {{-- <ul class="dropdown-menu">
                     <li><a href="index-2.html"><i class="fa fa-angle-right fa-fw"></i> Home v1</a></li>
                     <li><a href="index2.html"><i class="fa fa-angle-right fa-fw"></i> Home v2</a></li>
-                </ul>
+                </ul> --}}
             </li>
             <li class="dropdown">
                 <a href="#"><i class="fa fa-building-o fa-fw"></i> Pages</a>

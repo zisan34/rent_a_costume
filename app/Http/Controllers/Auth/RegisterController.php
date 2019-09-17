@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use DB;
 
 
 class RegisterController extends Controller
@@ -32,7 +32,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -41,9 +41,16 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
+        parent::__construct();
+        $this->countries=DB::table('countries')->get();
+        $this->cities=DB::table('cities')->get();
         $this->middleware('guest');
     }
 
+    public function showRegistrationForm()
+    {
+        return view('auth.register',$this->data);
+    }
     /**
      * Get a validator for an incoming registration request.
      *
