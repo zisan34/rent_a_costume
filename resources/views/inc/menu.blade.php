@@ -4,9 +4,9 @@
                 <div class="ct-header ct-header--default ct-u-paddingTop30 ct-u-paddingBottom50">
                     <div class="ct-header-navigation">
                         <ul class="list-unstyled list-inline">
-                            <li><a href="my-account.html">My Account</a></li>
+                            {{-- <li><a href="my-account.html">My Account</a></li>
                             <li><a href="wishlist.html">Wishlist</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
+                            <li><a href="checkout.html">Checkout</a></li> --}}
                         </ul>
                     </div>
                     <div class="ct-header-logo">
@@ -30,7 +30,7 @@
                          
                         </li>
                         <li class="dropdown">
-                            <a href="collections.html">Collections</a>
+                            <a href="#">Collections</a>
                             <!--        We need here padding-bottom 0 to display properly the image inside this content. Please, don't change paddingBottom.        -->
                             <ul class="dropdown-menu ct-u-paddingBottom0">
                                 <li>
@@ -41,7 +41,8 @@
                                                 <ul class="list-unstyled">
                                                     @isset($all_brands)
                                                        @foreach($all_brands as $b)
-                                                             <li><a href="{{url('all_brands/'.urlencode($b->id))}}"> {{$b->brand_name}}</a></li>
+                                                             <li><a href="#"> {{$b->brand_name}}</a></li>
+                                                             {{-- <li><a href="{{url('all_brands/'.urlencode($b->id))}}"> {{$b->brand_name}}</a></li> --}}
                                                         @endforeach
                                                     @endisset
                                                    
@@ -54,7 +55,8 @@
                                                     @isset($all_category)
                                                         @foreach($all_category as $c)
 
-                                                            <li><a href="{{url('all_category/'.urlencode($c->id))}}"> {{$c->category_name}}</a></li>
+                                                            <li><a href="#"> {{$c->category_name}}</a></li>
+                                                            {{-- <li><a href="{{url('all_category/'.urlencode($c->id))}}"> {{$c->category_name}}</a></li> --}}
                                                         @endforeach
                                                     @endisset
                                                    

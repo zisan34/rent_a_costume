@@ -34,6 +34,10 @@ class CustomerProductController extends Controller
         $this->category=$this->product->category;
         $this->image=$this->product->img($this->product->id);
         $this->image_count = $this->product->img_count($this->product->id);
+        $min=$this->product->price-50;
+        $max=$this->product->price+50;
+        $this->related_products=Product::where('price','>',$min)->where('price','<',$max)
+                                        ->where('brand_id',$this->product->brand_id)->paginate(5);
         return view('customer.single_product',$this->data);
     }
 }

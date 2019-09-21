@@ -6,8 +6,6 @@
 <div class="ct-preloader"><div class="ct-preloader-content"></div></div>
 
 
-
-
     <div id="ct-js-wrapper" class="ct-pageWrapper">
         <!-- navbar + logo menu -->
      
@@ -22,20 +20,14 @@
                                 <div class="col-md-5">
                                     <div class="ct-productGallery ct-js-popupGallery" data-snap-ignore="true">
                                       
-                                        <div id="sync1" class="owl-carousel">
-                                             @for($i=0;$i<$image_count;$i++)
+                                       
+                                            @if($image_count>0)
                                             <div class="item">
-                                                <a href="{{asset('upload/product/'.$image[$i]->image)}}" class="ct-js-magnificPopupImage"><img src="{{asset('upload/product/'.$image[$i]->image)}}" alt="Product 1"></a>
+                                                <a href="{{asset('upload/product/'.$image[0]->image)}}" class="ct-js-magnificPopupImage"><img src="{{asset('upload/product/'.$image[0]->image)}}" alt="Product 1"></a>
                                             </div>
-                                            @endfor
-                                        </div>
-                                        <div id="sync2" class="owl-carousel ct-u-paddingBoth20">
-                                            @for($j=0;$j<$image_count;$j++)
-                                            <div class="item">
-                                                <img src="{{asset('upload/product/'.$image[$i]->image)}}" alt="Product 1">
-                                            </div>
-                                           @endfor
-                                        </div>
+                                            @endif
+                                       
+                                       
                                     </div>
                                     
                                 </div>
@@ -66,57 +58,30 @@
                                       
                                            
                                        
-                                        <form action="#">
+                                       
                                             <div class="ct-productSize">
-                                                <div class="ct-u-size16 ct-u-paddingBottom10">Select Size:</div>
-                                                <div class="">
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> <span>5</span>
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> <span>6</span>
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3"> <span>7</span>
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio4" value="option4"> <span>8</span>
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio5" value="option5"> <span>9</span>
-                                                    </label>
-                                                    <label class="radio-inline">
-                                                        <input type="radio" name="inlineRadioOptions" id="inlineRadio6" value="option6"> <span>10</span>
-                                                    </label>
-                                                    <a href="#" class=""><i class="fa fa-fw fa-file-text-o"></i> Ring Size Guide</a>
-                                                </div>
+                                                <div class="ct-u-size16 ct-u-paddingBottom10">Last Rent : {{$product->last_rent}}</div>
+                                               
                                             </div>
-                                            <div class="ct-u-size16 ct-u-paddingTop10">Select Color:</div>
-                                            <select class="ct-js-colorSelector">
-                                                <option value="0" data-color="#d2a48a" selected="selected">salmon</option>
-                                                <option value="1" data-color="#e1c99b">yellow</option>
-                                                <option value="2" data-color="#deddd9">grey</option>
-                                            </select>
+                                            <div class="ct-u-size16 ct-u-paddingTop10">Availability:
+                                                @if($product->availability==1)
+                                                    <i class="badge badge-success"><b>Yes</b></i>
+                                                @else 
+                                                    <i class="badge badge-danger"><b>No</b></i>
+                                                @endif
+                                            </div>
+                                            
                                             <div class="ct-productQuantity">
-                                                <div class="ct-u-size16 ct-u-paddingBottom10">Select Quantity:</div>
-                                                <div class="">
-                                                    <select class="ct-select ct-select--small">
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                    </select>
-                                                </div>
+                                                
                                             </div>
                                             <div class="ct-speedbuy ct-u-paddingBoth20">
-                                                <a class="btn btn-default" href="my-cart.html" role="button"><i class="fa fa-shopping-cart"></i></a>
+                                                <a class="btn btn-default" onclick="addto_card('{{$product->id}}')" role="button"><i class="fa fa-shopping-cart"></i></a>
                                                 <div class="ct-or text-uppercase ct-u-paddingBottom20">
                                                     OR
                                                 </div>
-                                                <a class="btn btn-default ct-u-size18 text-uppercase" href="checkout.html" role="button">Speed Buy <i class="fa fa-long-arrow-right ct-u-paddingLeft10"></i></a>
+                                               
                                             </div>
-                                        </form>
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -168,21 +133,18 @@
                                                     <td>{{$product->last_rent}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Type</th>
-                                                    <td>Ring</td>
+                                                    <th>Unit Time Price</th>
+                                                    <td>{{$product->price}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Model Name</th>
-                                                    <td>The Carysa</td>
+                                                    <td>{{$product->product_name}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Occasion</th>
-                                                    <td>Love</td>
+                                                    <th>Added at</th>
+                                                    <td>{{$product->created_at}}</td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Color</th>
-                                                    <td>White Gold</td>
-                                                </tr>
+                                               
                                                 </tbody>
                                             </table>
                                         </div>
@@ -199,15 +161,21 @@
                                                 <tbody>
                                                 <tr>
                                                     <th>Rent frequency</th>
-                                                    <td>14 K</td>
+                                                    <td>{{$product->rent_frequency($product->id)}}</td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Normal Rent Time</th>
-                                                    <td>2.82</td>
+                                                    <th>Quality</th>
+                                                    <td>Good</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Availability</th>
-                                                    <td>2.82</td>
+                                                    <td>
+                                                         @if($product->availability==1)
+                                                            <i class="badge badge-success"><b>Yes</b></i>
+                                                        @else 
+                                                            <i class="badge badge-danger"><b>No</b></i>
+                                                        @endif
+                                                    </td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -225,11 +193,11 @@
                                                 <tbody>
                                                 <tr>
                                                     <th>Category</th>
-                                                    <td>GIA Certified, BIS Hallmark</td>
+                                                    <td>{{$category->category_name}}</td>
                                                 </tr>
                                                 <tr>
                                                     <th>Quantity Total</th>
-                                                    <td>GIA Certified, BIS Hallmark</td>
+                                                    <td>{{$product->quantity}}</td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -245,117 +213,68 @@
                                         <div class="ct-ratingsLeft">
                                             <h4>Rating Snapshot</h4>
                                             <div class="ct-stars">
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star"></i>
-                                                <i class="fa fa-star ct-u-colorGrey"></i>
-                                                <i class="fa fa-star ct-u-colorGrey"></i>
+                                                <i class="fa fa-star">{{$product->averageRate()}}</i>
+                                                
                                                 <div class="ct-reviews">
-                                                    <a href="#">2 customer reviews</a>
+                                                    <a href="#">{{$product->totalCommentsCount()}} customer reviews</a>
                                                 </div>
                                             </div>
-                                            <div class="ct-u-paddingTop10">Overall Rating 2.8 out of 5</div>
-                                            <div class="ct-u-paddingTop15 ct-fs-i">(21 of 56 (38%) reviewers would recommend this product to a friend.)</div>
+                                           
+                                           
                                         </div>
-                                        <div class="ct-ratingsRight">
-                                            <ul class="list-unstyled ct-u-paddingTop15">
-                                                <li><span>5 stars</span><span><span data-width="60"></span></span><span>12</span></li>
-                                                <li><span>4 stars</span><span><span data-width="20"></span></span><span>7</span></li>
-                                                <li><span>3 stars</span><span><span data-width="50"></span></span><span>7</span></li>
-                                                <li><span>2 stars</span><span><span data-width="80"></span></span><span>17</span></li>
-                                                <li><span>1 star</span><span><span data-width="45"></span></span><span>13</span></li>
-                                            </ul>
-                                        </div>
+                                        
                                         <div class="clearfix"></div>
                                         <hr>
-                                        <div class="ct-range ct-u-paddingTop25">
-                                            <div>Sizing Snapshot</div>
-                                            <div>Fit Snug</div>
-                                            <div class="ct-rangeSlider">
-                                                <div class="ct-js-noUiSliderDisabled ct-noUiSlider"></div>
-                                            </div>
-                                            <div>Runs Large</div>
-                                        </div>
+                                       
                                     </div>
                                     <div class="clearfix"></div>
                                     <h4 class="ct-fw-600 ct-u-paddingBottom30 ct-u-marginBottom0 ct-u-paddingTop30">2 Reviews</h4>
-
-                                    <div class="ct-feedback ct-u-paddingTop30">
-                                         <span class="pull-left">Very Beautiful Ring!!</span><span></span>
-                                         <span class="pull-right"><i class="fa fa-pencil fa-fw"></i>  Posted by: <a href="#" class="author">Karen1234</a></span>
-                                         <div class="clearfix"></div>
-                                        <div class="ct-stars ct-u-paddingBoth10">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </div>
-                                        <div class="ct-feedbackDescription ct-u-paddingBottom20">
-                                            This ring looks really elegant and dainty!! Love it!! This is really a pretty ring. get all kinds of compliments, I normally wear an 8 on my ring finger, so I orderd the size 10 for my pointer finger. perfect fit. I bought the clad & it is awesome.
-                                        </div>
-                                        <div class="ct-recommendation ct-u-paddingBoth20">
-                                            <span class="ct-fw-600">Would you recommend this product as a gift?</span><br>
-                                            <span>Yes</span><br>
-                                            <span class="ct-fw-600">Who would this be a perfect gift for?</span><br>
-                                            <span>Families</span><br>
-                                            <div class="ct-recommendationReport ct-u-paddingBoth25">Was this review helpful to you? <a href="#">Yes</a><a href="#">No</a><span><i class="fa fa-fw fa-long-arrow-right"></i> <a href="#"> Report Inappropriate Review</a></span></div>
-                                            <div>
-                                                <span>Share this review:</span>
-                                                <ul class="ct-socials ct-socials--small ct-socials--black list-inline list-unstyled">
-                                                      <li><a href="https://www.facebook.com/createITpl"><i class="fa fa-facebook fa-fw"></i></a></li>
-                                                    <li><a href="https://twitter.com/createitpl"><i class="fa fa-twitter fa-fw"></i></a></li>
-                                                </ul>
+                                    @php
+                                       $me=Auth::user();
+                                        $comments=DB::table('comments')->where('commentable_id',$product->id)
+                                                                       ->get();
+                                    @endphp
+                                    @if($comments)
+                                        @foreach($comments as $com)
+                                        @php
+                                            $u=$com->commented_id;
+                                            $u=App\User::find($u);
+                                        @endphp
+                                            <div class="ct-feedback ct-u-paddingTop30">
+                                                <span class="pull-left">{{$product->product_name}}</span><span></span>
+                                                <span class="pull-right"><i class="fa fa-pencil fa-fw"></i>  Posted by: <a href="#" class="author">{{$u->name}}</a></span>
+                                                <div class="clearfix"></div>
+                                                <div class="ct-stars ct-u-paddingBoth10">
+                                                    <i class="fa fa-star"></i>
+                                                
+                                                </div>
+                                                <div class="ct-feedbackDescription ct-u-paddingBottom20">
+                                                   {{$com->comment}}
+                                                </div>
+                                                
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="ct-feedback ct-u-paddingTop30">
-                                        <span class="pull-left">Cute but not confortable</span><span></span>
-                                        <span class="pull-right"><i class="fa fa-pencil fa-fw"></i>  Posted by: <a href="#" class="author">Jessie Macdonalds</a></span>
-                                        <div class="clearfix"></div>
-                                        <div class="ct-stars ct-u-paddingBoth10">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star ct-u-colorGrey"></i>
-                                            <i class="fa fa-star ct-u-colorGrey"></i>
-                                            <i class="fa fa-star ct-u-colorGrey"></i>
-                                        </div>
-                                        <div class="ct-feedbackDescription ct-u-paddingBottom20">
-                                            I wore this ring twice and one of the stones already popped out! It is a cute ring but not very comfortable. I wore it on my left hand ring finger and it is scratchy. I purchaed the ring in both silver and gold. I don't want to return it but I might have to.
-                                        </div>
-                                        <div class="ct-recommendation ct-u-paddingBoth20">
-                                            <div class="ct-u-paddingBottom20 ct-u-marginBottom20 ct-u-borderBottomDarkGrey"><span class="ct-fw-600">Sizing Feedback:</span> <span class="ct-fs-i">It’s much smaller than expected..</span></div>
-                                            <span class="ct-fw-600">Would you recommend this product as a gift?</span><br>
-                                            <span>No</span><br>
-                                            <span class="ct-fw-600">Who would this be a perfect gift for?</span><br>
-                                            <span>Me!</span><br>
-                                            <div class="ct-recommendationReport ct-u-paddingBoth25">Was this review helpful to you? <a href="#">Yes</a><a href="#">No</a><span><i class="fa fa-fw fa-long-arrow-right"></i> <a href="#"> Report Inappropriate Review</a></span></div>
-                                            <div>
-                                                <span>Share this review:</span>
-                                                <ul class="ct-socials ct-socials--small ct-socials--black list-inline list-unstyled">
-                                                      <li><a href="https://www.facebook.com/createITpl"><i class="fa fa-facebook fa-fw"></i></a></li>
-                                                    <li><a href="https://twitter.com/createitpl"><i class="fa fa-twitter fa-fw"></i></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
+                                        @endforeach
+                                    @endif
+                                   
                                     <div class="ct-feedback ct-u-paddingTop25">
                                         <div class="row">
                                             <div class="col-md-8">
+                                                @auth
+                                                @php
+                                                   
+                                                    $tm=Auth::user()->id;
+                                                    $checker=App\Order::where('user_id',$tm)->where('product_id',$product->id)->count();
+                                                @endphp
                                                 <h4 class="ct-fw-600 ct-u-paddingBottom20 ct-u-marginBottom0">Help others! Write a review</h4>
                                                 <div class="ct-u-size16">All fields are mandatory.</div>
-                                                <form class="form-horizontal ct-u-paddingTop30">
-                                                    <div class="form-group">
-                                                        <label for="title" class="col-sm-3 control-label">Review Title:</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" class="form-control" id="title" required>
-                                                            <span>(Maximum 20 words)</span>
-                                                        </div>
-                                                    </div>
+                                                @if($checker>0)
+                                                <form class="form-horizontal ct-u-paddingTop30" method="POST" action="{{url('submit_rating')}}">
+                                                   @csrf
+                                                   <input type="hidden" name="pro_id" value="{{$product->id}}">
                                                     <div class="form-group">
                                                         <label for="review" class="col-sm-3 control-label">Your Review:</label>
                                                         <div class="col-sm-9">
-                                                            <textarea id="review" class="form-control" rows="6"></textarea>
+                                                            <textarea id="review" name="comment" class="form-control" rows="6"></textarea>
                                                             <span>Please do not include: HTML, references to other retailers, pricing, personal informations, any profane, inflammatory or copyrighted comments, or any copied content.</span>
                                                         </div>
                                                     </div>
@@ -363,36 +282,22 @@
                                                         <label for="name" class="col-sm-3 control-label">Your Rating:</label>
                                                         <div class="col-sm-9">
                                                             <div class="lead">
-                                                                <div id="stars-existing" class="starrr" data-rating='4'></div>
-                                                            </div>
-                                                            <span>(Click to rate on scale of 1-5)</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="name" class="col-sm-3 control-label">Name:</label>
-                                                        <div class="col-sm-9">
-                                                            <input type="text" class="form-control" id="name" required>
-                                                            <span>(First and last name)</span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12">
-                                                            <div class="ct-range ct-u-paddingTop25" data-snap-ignore="true">
-                                                                <div>Sizing Snapshot</div>
-                                                                <div>Fit Snug</div>
-                                                                <div class="ct-rangeSlider">
-                                                                    <div class="ct-js-noUiSlider ct-noUiSlider"></div>
+                                                                <div id="stars-existing" class="starrr" data-rating='4'>
+                                                                    <input type="number" name="rating" class="form-control">
                                                                 </div>
-                                                                <div>Runs Large</div>
                                                             </div>
+                                                           
                                                         </div>
                                                     </div>
+                                                   
+                                                    
                                                     <div class="form-group ct-u-paddingTop30">
-                                                        <button type="submit" class="btn btn-default">
-                                                          Submit   <i class="fa fa-long-arrow-right fa-fw"></i>
-                                                        </button>
+                                                        <input class="btn btn-default " type="submit" value="Submit">
+                                                       
                                                     </div>
                                                 </form>
+                                                @endif
+                                                @endauth
                                             </div>
                                             <div class="col-md-4">
                                                 <div class="widget">
@@ -431,178 +336,42 @@
 
                     </div>
                 </div>
-                <h4 class="ct-headerBox text-left ct-u-borderBottom3 ct-u-paddingBottom15 ct-u-paddingTop55">Recommendations Based On Your Browsing History</h4>
+                <h4 class="ct-headerBox text-left ct-u-borderBottom3 ct-u-paddingBottom15 ct-u-paddingTop55">Recommendations For You </h4>
                 <div class="ct-u-paddingBottom50 ct-u-paddingTop35">
                     <div class="ct-js-owl owl-carousel ct-productCarousel ct-productCarousel--arrowsTopRight" data-single="false" data-pagination="false" data-navigation="true" data-items="4" data-snap-ignore="true">
-                        <div class="item">
-                            <div class="ct-productShop ct-productShop--zoom">
-                                <div class="ct-productShop-category">
-                                    <span class="ct-productShop-h5">Rings</span>
-                                    <div class="clearfix"></div>
-                                    <img class="ct-js-zoomImage" src="assets/images/demo-content/featured-item1.jpg" data-zoom-image="assets/images/demo-content/featured-item1-large.jpg" alt="">
-                                </div>
-                                <div class="ct-productShop-content">
-                                    <div class="ct-productShop-content-description">
-                                        <a href="single-product.html">
-                                            <h3>Aaron basha 18K White Yellows Pink Enamel Flower</h3>
-                                            <span><del>450.99</del> $318.00</span>
-                                        </a>
-                                        <span class="ct-productShop-shopCart">
-                                            <a class="btn btn-default" href="my-cart.html" role="button"><i class="fa fa-shopping-cart fa-fw"></i></a>
-                                            <a class="btn btn-default btn-hidden" href="single-product.html" role="button"><i class="fa fa-chain fa-fw"></i></a>
-                                        </span>
+                        @if($related_products)
+                          @foreach($related_products as $recommend)
+                          @php
+                              $image=$recommend->img($recommend->id);
+                          @endphp
+                            <div class="item">
+                                <div class="ct-productShop ct-productShop--zoom">
+                                    <div class="ct-productShop-category">
+                                        <span class="ct-productShop-h5">{{$recommend->product_name}}</span>
+                                        <div class="clearfix"></div>
+                                        @if($recommend->img_count($recommend->id)>0)
+                                        <img class="ct-js-zoomImage" src="{{asset('upload/product/'.$image[0]->image)}}" data-zoom-image="{{asset('upload/product/'.$image[0]->image)}}" alt="">
+                                        @endif
+                                    </div>
+                                    <div class="ct-productShop-content">
+                                        <div class="ct-productShop-content-description">
+                                            <a href="single-product.html">
+                                                <h3>{{$recommend->description}}</h3>
+                                                <span> ${{$recommend->price}}</span>
+                                            </a>
+                                            <span class="ct-productShop-shopCart">
+                                                <a class="btn btn-default" href="#" onclick="addto_card('{{$recommend->id}}')" role="button"><i class="fa fa-shopping-cart fa-fw"></i></a>
+                                                <a class="btn btn-default btn-hidden" href="single-product.html" role="button"><i class="fa fa-chain fa-fw"></i></a>
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="ct-productShop ct-productShop--zoom">
-                                <div class="ct-productShop-category">
-                                    <span class="ct-productShop-h5">Rings</span>
-                                    <div class="clearfix"></div>
-                                    <img class="ct-js-zoomImage" src="assets/images/demo-content/featured-item2.jpg" data-zoom-image="assets/images/demo-content/featured-item2-large.jpg" alt="">
-                                </div>
-                                <div class="ct-productShop-content">
-                                    <div class="ct-productShop-content-description">
-                                        <a href="single-product.html">
-                                            <h3>Charleso Krypell Sterlingoinum & 14K Yellow Gold</h3>
-                                            <span>$290.99</span>
-                                        </a>
-                                        <span class="ct-productShop-shopCart">
-                                            <a class="btn btn-default" href="my-cart.html" role="button"><i class="fa fa-shopping-cart fa-fw"></i></a>
-                                            <a class="btn btn-default btn-hidden" href="single-product.html" role="button"><i class="fa fa-chain fa-fw"></i></a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ct-productShop ct-productShop--zoom">
-                                <div class="ct-productShop-category">
-                                    <span class="ct-productShop-h5">Rings</span>
-                                    <div class="clearfix"></div>
-                                    <img class="ct-js-zoomImage" src="assets/images/demo-content/featured-item3.jpg" data-zoom-image="assets/images/demo-content/featured-item3-large.jpg" alt="">
-                                </div>
-                                <div class="ct-productShop-content">
-                                    <div class="ct-productShop-content-description">
-                                        <a href="single-product.html">
-                                            <h3>Lagos Sterling Silver & 18K Gold Yellow Four Flower</h3>
-                                            <span><del>169.99</del> $150.00</span>
-                                        </a>
-                                        <span class="ct-productShop-shopCart">
-                                            <a class="btn btn-default" href="my-cart.html" role="button"><i class="fa fa-shopping-cart fa-fw"></i></a>
-                                            <a class="btn btn-default btn-hidden" href="single-product.html" role="button"><i class="fa fa-chain fa-fw"></i></a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ct-productShop ct-productShop--zoom">
-                                <div class="ct-productShop-category">
-                                    <span class="ct-productShop-h5">Wedding Rings</span>
-                                    <div class="clearfix"></div>
-                                    <img class="ct-js-zoomImage" src="assets/images/demo-content/featured-item4.jpg" data-zoom-image="assets/images/demo-content/featured-item4-large.jpg" alt="">
-                                </div>
-                                <div class="ct-productShop-content">
-                                    <div class="ct-productShop-content-description">
-                                        <a href="single-product.html">
-                                            <h3>Charles Krypell Sterlingoi Silver Cobblestone Textured </h3>
-                                            <span>$189.99</span>
-                                        </a>
-                                        <span class="ct-productShop-shopCart">
-                                            <a class="btn btn-default" href="my-cart.html" role="button"><i class="fa fa-shopping-cart fa-fw"></i></a>
-                                            <a class="btn btn-default btn-hidden" href="single-product.html" role="button"><i class="fa fa-chain fa-fw"></i></a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ct-productShop ct-productShop--zoom">
-                                <div class="ct-productShop-category">
-                                    <span class="ct-productShop-h5">Rings</span>
-                                    <div class="clearfix"></div>
-                                    <img class="ct-js-zoomImage" src="assets/images/demo-content/featured-item1.jpg" data-zoom-image="assets/images/demo-content/featured-item1-large.jpg" alt="">
-                                </div>
-                                <div class="ct-productShop-content">
-                                    <div class="ct-productShop-content-description">
-                                        <a href="single-product.html">
-                                            <h3>Aaron basha 18K White Yellows Pink Enamel Flower</h3>
-                                            <span><del>450.99</del> $318.00</span>
-                                        </a>
-                                        <span class="ct-productShop-shopCart">
-                                            <a class="btn btn-default" href="my-cart.html" role="button"><i class="fa fa-shopping-cart fa-fw"></i></a>
-                                            <a class="btn btn-default btn-hidden" href="single-product.html" role="button"><i class="fa fa-chain fa-fw"></i></a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ct-productShop ct-productShop--zoom">
-                                <div class="ct-productShop-category">
-                                    <span class="ct-productShop-h5">Rings</span>
-                                    <div class="clearfix"></div>
-                                    <img class="ct-js-zoomImage" src="assets/images/demo-content/featured-item2.jpg" data-zoom-image="assets/images/demo-content/featured-item2-large.jpg" alt="">
-                                </div>
-                                <div class="ct-productShop-content">
-                                    <div class="ct-productShop-content-description">
-                                        <a href="single-product.html">
-                                            <h3>Charleso Krypell Sterlingoinum & 14K Yellow Gold</h3>
-                                            <span>$290.99</span>
-                                        </a>
-                                        <span class="ct-productShop-shopCart">
-                                            <a class="btn btn-default" href="my-cart.html" role="button"><i class="fa fa-shopping-cart fa-fw"></i></a>
-                                            <a class="btn btn-default btn-hidden" href="single-product.html" role="button"><i class="fa fa-chain fa-fw"></i></a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ct-productShop ct-productShop--zoom">
-                                <div class="ct-productShop-category">
-                                    <span class="ct-productShop-h5">Rings</span>
-                                    <div class="clearfix"></div>
-                                    <img class="ct-js-zoomImage" src="assets/images/demo-content/featured-item3.jpg" data-zoom-image="assets/images/demo-content/featured-item3-large.jpg" alt="">
-                                </div>
-                                <div class="ct-productShop-content">
-                                    <div class="ct-productShop-content-description">
-                                        <a href="single-product.html">
-                                            <h3>Lagos Sterling Silver & 18K Gold Yellow Four Flower</h3>
-                                            <span><del>169.99</del> $150.00</span>
-                                        </a>
-                                        <span class="ct-productShop-shopCart">
-                                            <a class="btn btn-default" href="my-cart.html" role="button"><i class="fa fa-shopping-cart fa-fw"></i></a>
-                                            <a class="btn btn-default btn-hidden" href="single-product.html" role="button"><i class="fa fa-chain fa-fw"></i></a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="ct-productShop ct-productShop--zoom">
-                                <div class="ct-productShop-category">
-                                    <span class="ct-productShop-h5">Wedding Rings</span>
-                                    <div class="clearfix"></div>
-                                    <img class="ct-js-zoomImage" src="assets/images/demo-content/featured-item4.jpg" data-zoom-image="assets/images/demo-content/featured-item4-large.jpg" alt="">
-                                </div>
-                                <div class="ct-productShop-content">
-                                    <div class="ct-productShop-content-description">
-                                        <a href="single-product.html">
-                                            <h3>Charles Krypell Sterlingoi Silver Cobblestone Textured </h3>
-                                            <span>$189.99</span>
-                                        </a>
-                                        <span class="ct-productShop-shopCart">
-                                            <a class="btn btn-default" href="my-cart.html" role="button"><i class="fa fa-shopping-cart fa-fw"></i></a>
-                                            <a class="btn btn-default btn-hidden" href="single-product.html" role="button"><i class="fa fa-chain fa-fw"></i></a>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            @endforeach
+                        @endif
+                      
                     </div>
+                      {{ $related_products->links() }}
                 </div>
             </div>
 

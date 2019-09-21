@@ -49,6 +49,10 @@
                                     <label for="simpleinput">Product Quantity</label>
                                     <input type="number" value="{{$product->quantity}}" name="quantity" id="simpleinput" class="form-control" required>
                                 </div>
+                                <div class="form-group mb-3">
+                                    <label for="simpleinput">Product Highlight</label>
+                                    <input type="number" value="{{$product->highlight}}" name="highlight" id="simpleinput" class="form-control" required>
+                                </div>
 
                                 <div class="form-group mb-3">
                                     <label for="example-textarea">Details</label>
@@ -90,18 +94,18 @@
                                         <p class="text-muted text-center mt-2 mb-0">Image 1</p>
                                     </div>
                                 </div>
-                                <div class="col-lg-4 float-left">
+                                {{-- <div class="col-lg-4 float-left">
                                     <div class="mt-3">
                                         <input type="file" name="image2" class="dropify" @if(sizeof($images)>1)  data-default-file="{{asset('upload/product/'.$images[1]->image)}}" @endif/>
                                         <p class="text-muted text-center mt-2 mb-0">Image 2</p>
                                     </div>
-                                </div>
-                                <div class="col-lg-4 float-left">
+                                </div> --}}
+                                {{-- <div class="col-lg-4 float-left">
                                     <div class="mt-3">
                                         <input type="file" name="image3" class="dropify" @if(sizeof($images)>2) data-default-file="{{asset('upload/product/'.$images[2]->image)}}" @endif />
                                         <p class="text-muted text-center mt-2 mb-0">Image 3</p>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="switchery-demo">
                                     <label for="">Status</label>
                                     <input type="checkbox" checked data-plugin="switchery" name="status" value='true' data-color="#1bb99a"/>

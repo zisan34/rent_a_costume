@@ -7,9 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Auth;
 use App\Image;
 use Exception;
+use Actuallymab\LaravelComment\Contracts\Commentable;
+use Actuallymab\LaravelComment\HasComments;
 
-class Product extends Model
+class Product extends Model implements Commentable
 {
+    use HasComments;
+    public function canBeRated(): bool
+    {
+        return true; // default false
+    }
+   
     public function category(){
         return $this->belongsTo('App\ProductCategory','category_id');
     }
@@ -24,6 +32,11 @@ class Product extends Model
         $img = Image::where('type', 'App\Product')->where('type_id', $id)->count();
         return $img;
     }
+    public function rent_frequency($id){
+        $p=Product::find($id);
+        //code
+        return 9;
+    }
     public static function store($data){
         try{
             $product = new Product;
@@ -32,6 +45,7 @@ class Product extends Model
             $code = \rand(0, 1000000);
             $code = '#' . $code;
             $product->unique_code = $code;
+            $product->highlight = $data->highlight;
             $product->quantity=$data->quantity;
             $product->added_by = Auth::user()->id;
             $product->price = $data->price;
@@ -76,6 +90,7 @@ class Product extends Model
         $product->description = $data->description;
         $product->quantity = $data->quantity;
         $product->price = $data->price;
+        $product->highlight=$data->highlight;
         if ($data->status == 'true') {
             $product->status = 1;
         } else {

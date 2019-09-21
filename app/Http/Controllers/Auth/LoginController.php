@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -58,11 +59,17 @@ class LoginController extends Controller
         $user=User::where('email',$request->email)->first();
         if($user){
             if($user->is_super_admin==1){
-                Auth::login($user);
-                return redirect('admin/adminDashboard');
+                if (Hash::check( $request->password, $user->password)) {
+                    Auth::login($user);
+                    return redirect('admin/adminDashboard');
+                }
+              
             }else{
-                Auth::login($user);
-                return redirect()->back();
+                if (Hash::check($request->password, $user->password)) {
+                    Auth::login($user);
+                    return redirect()->back();
+                }
+               
             }
         }
         return redirect()->back()->withInput();

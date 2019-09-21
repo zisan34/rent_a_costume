@@ -1,4 +1,20 @@
         <!-- TOPBAR -->
+        @php
+          
+            $myCartCollection =0;
+            $myCartSubtotal =0;
+            $mycartTotalQuantity =0;
+            $myTotal =0;
+            if(!Cart::isEmpty()){
+                $myCartCollection = Cart::getContent()->toArray();
+                $myCartSubtotal = Cart::getSubTotal();;
+                $mycartTotalQuantity = Cart::getTotalQuantity();
+                $myTotal = Cart::getTotal();
+            }
+             $ma=0;
+           // Cart::clear();
+          //  print_r($myCartCollection);
+        @endphp
         <div class="ct-topBar">
             <div class="container">
                 <div class="ct-topBar-navigation pull-left">
@@ -16,7 +32,7 @@
 
                             @auth
                             @if(auth()->user()->is_super_admin)
-                            <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-fw fa-pencil"></i> Admin Panel</a></li>
+                            {{-- <li><a href="{{ route('admin.dashboard') }}"><i class="fa fa-fw fa-pencil"></i> Admin Panel</a></li> --}}
                             @endif
                             @endauth
                         @endguest
@@ -27,69 +43,62 @@
 
                 {{-- cart --}}
                 <div class="pull-right">
+                     
                     <div class="ct-topBar-basket">
-                        <a href="my-cart.html"><span class="ct-topBar-basket-cart"><i class="fa fa-fw fa-shopping-cart"></i> Cart: </span><span class="ct-topBar-basket-quantity">3 item(s)</span><span class="ct-topBar-basket-price"> - $0.00</span></a>
+                        <a href="my-cart.html"><span class="ct-topBar-basket-cart"><i class="fa fa-fw fa-shopping-cart"></i> Cart: </span><span class="ct-topBar-basket-quantity">{{$mycartTotalQuantity}} item(s)</span><span class="ct-topBar-basket-price"> - ${{$myTotal}}</span></a>
                         <div class="ct-topBar-basket-info">
-                            <div class="ct-cartItem">
-                                <a href="single-product.html">
-                                    <div class="ct-cartItem-image pull-left">
-                                        <img src="{{ asset('assets/images/demo-content/shop-cart-ring1.png') }}" alt="">
+                            @if(is_array($myCartCollection))
+                                @foreach($myCartCollection as $myCartCollection)
+                                @php
+                            // print_r($myCartCollection['id']);
+                            //  exit();
+                                $cart_product=App\Product::find($myCartCollection['id']);
+                                $cart_img=$cart_product->img($cart_product->id);
+                               
+                                @endphp
+                                    <div class="ct-cartItem">
+                                        <a  href="{{url('single_product/'.urlencode($cart_product->id))}}">
+                                            <div class="ct-cartItem-image pull-left">
+                                                @if($cart_product->img_count($cart_product->id)>0)
+                                                <img src="{{ asset('upload/product/'.$cart_img[0]->image) }}" alt="">
+                                                @endif
+                                            </div>
+                                            <div class="ct-cartItem-title" style="height:60px;width:70px;overflow:hidden">
+                                                {{$cart_product->description}}
+                                            </div>
+                                            <div class="ct-cartItem-price">
+                                                ${{$cart_product->price}}
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </a>
                                     </div>
-                                    <div class="ct-cartItem-title">
-                                        Round Pave' Color Diamon Ring, Sterling, 1/4 cttw
-                                    </div>
-                                    <div class="ct-cartItem-price">
-                                        $167.00
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </a>
-                            </div>
-                            <div class="ct-cartItem">
-                                <a href="single-product.html">
-                                    <div class="ct-cartItem-image pull-left">
-                                        <img src="{{ asset('assets/images/demo-content/shop-cart-ring2.png') }}" alt="">
-                                    </div>
-                                    <div class="ct-cartItem-title">
-                                        Barbara Bixby Sterling 18K Gold Citrine or Pink
-                                    </div>
-                                    <div class="ct-cartItem-price">
-                                        $290.99
-                                    </div>
-                                    <div class="clearfix"></div>
-                                </a>
-                            </div>
+                                   @php
+                                       $ma++;
+                                      
+                                       if($ma>1){break;}
+                                   @endphp
+
+                                @endforeach
+                            @endif
+                           @if($mycartTotalQuantity>2)
+                           <div>
+                               <h5>More.............</h5>
+                           </div>
+                           @endif
                             <div class="clearfix"></div>
                             <div class="ct-cartSubtotal">
-                                <div class="pull-left ct-fw-600">Subtotal</div>
-                                <div class="pull-right ct-fw-600">$457.99</div>
+                                <div class="pull-left ct-fw-600">Subtotal: ${{$myCartSubtotal}}</div>
+                             
                                 <div class="clearfix"></div>
                             </div>
                             <div class="ct-cartGoNext text-uppercase ct-u-paddingBoth20">
-                                <a class="btn btn-default ct-u-width-49pc" href="my-cart.html" role="button">View Cart <i class="fa fa-angle-double-right fa-fw"></i></a>
-                                <a class="btn btn-default pull-right ct-u-width-49pc" href="checkout.html" role="button">Checkout <i class="fa fa-angle-double-right fa-fw"></i></a>
+                                <a class="btn btn-default ct-u-width-49pc" href="{{url('mycart')}}" role="button">View Cart <i class="fa fa-angle-double-right fa-fw"></i></a>
+                                
                             </div>
                         </div>
                     </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-md dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            EN <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">FR</a></li>
-                            <li><a href="#">ES</a></li>
-                            <li><a href="#">DE</a></li>
-                            <li><a href="#">PT</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-md dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            $ <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">EUR €</a></li>
-                            <li><a href="#">GBP £</a></li>
-                        </ul>
-                    </div>
+                   
+                   
                 </div>
             </div>
         </div>
