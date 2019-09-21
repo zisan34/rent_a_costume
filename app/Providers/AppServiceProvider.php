@@ -7,6 +7,10 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use View;
 
+use App\SiteSetting;
+use App\ProductCategory;
+use App\Brand;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -28,5 +32,8 @@ class AppServiceProvider extends ServiceProvider
     {
         View::share('user', \Auth::user());
         Schema::defaultStringLength(191);
+        view()->share('siteSettings', SiteSetting::first());
+        view()->share('all_category', ProductCategory::orderBy('updated_at','desc')->get());
+        view()->share('all_brands', Brand::orderBy('updated_at','desc')->get());
     }
 }

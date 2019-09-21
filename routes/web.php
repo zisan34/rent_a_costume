@@ -17,10 +17,11 @@ Route::get('/','HomeController@index');
 Route::any('logout','HomeController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'admin/', 'middleware'=>'auth'], function() {
-	Route::get('adminDashboard', 'BackEndController@dashboard')->name('admin.dashboard');
-	Route::any('apps-calendar', 'BackEndController@calendar');
 
+Route::group(['prefix' => 'admin/', 'middleware'=>'admin'], function() {
+	Route::get('adminDashboard','BackEndController@dashboard')->name('admin.dashboard');
+
+  Route::get('apps-calendar','BackEndController@calendar')->name('app.calendar');
 
 	Route::get('apps-contacts', 'BackEndController@appscontacts');
 	Route::get('apps-tickets', 'BackEndController@appstickets');
@@ -88,13 +89,32 @@ Route::get('showtop_product', 'CustomerProductController@showtop');
 Route::any('showall_product', 'CustomerProductController@showall');
 Route::any('single_product/{id}', 'CustomerProductController@singleshow');
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('addto_card', 'CartController@add');
-	Route::get('mycart','CartController@show_cart');
-	Route::get('check_end_date', 'CartController@check_end_date');
-	Route::post('checkout', 'CartController@checkout');
-	Route::get('removecart/{id}','CartController@remove');
-	route::post('submit_rating', 'CartController@submit_rating');
+Route::get('addto_card', 'CartController@add');
+Route::get('mycart','CartController@show_cart');
+Route::get('check_end_date', 'CartController@check_end_date');
+Route::post('checkout', 'CartController@checkout');
+Route::get('removecart/{id}','CartController@remove');
+route::post('submit_rating', 'CartController@submit_rating');
+
 });
+
+
+Route::get('faqs','HomeController@faqs')->name('faqs');
+Route::get('about','HomeController@aboutUs')->name('about');
+Route::get('mission','HomeController@mission')->name('mission');
+
+Route::group(['prefix' => 'support/', 'middleware'=>'auth'], function() {
+
+Route::get('/','CustomerQueriesController@index')->name('support');
+
+Route::post('store','CustomerQueriesController@store')->name('support.store');
+
+Route::post('comment','CustomerQueriesController@addComment')->name('support.comment');
+
+Route::get('view/{id}','CustomerQueriesController@show')->name('support.show');
+
+});
+
 
 
 Auth::routes();
