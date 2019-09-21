@@ -88,7 +88,7 @@
                                 <li><a href="{{url('admin/editBrand')}}">Brands</a>  </li>
                             </ul>
                         </li>
-                        <li>
+                        {{-- <li>
                              <a href="javascript: void(0);">
                                  <span>  Faqs </span>
                                  <span class="menu-arrow"></span>
@@ -97,7 +97,7 @@
                                 <li>Add Faqs </li>
                                 <li>Edit Faqs </li>
                             </ul>
-                        </li>
+                        </li> --}}
                        
                     </ul>
                 </li>
@@ -109,18 +109,19 @@
                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li>
-                            <a href="{{url('admin/ecommerce-dashboard')}}">Dashboard</a>
-                        </li>
+                        
                         <li>
                             <a href="{{url('admin/ecommerce-products')}}">Products</a>
                         </li>
-                        {{-- <li>
-                            <a href="{{url('admin/ecommerce-prduct-detail')}}">Product Detail</a>
-                        </li> --}}
+                        <li>
+                            <a href="{{url('admin/showComment')}}">Product Comment</a>
+                        </li>
                        
                         <li>
                             <a href="{{url('admin/total_orders')}}">Orders</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/total_invoice')}}">Invoices</a>
                         </li>
                         
                     </ul>
@@ -196,7 +197,7 @@
 
 
                 <li>
-                    <a href="{{route('faqs')}}">
+                    <a href="{{route('admin.faqs')}}">
                         <i class="fe-bookmark"></i>
                         {{-- <span class="badge badge-success badge-pill float-right">4</span> --}}
                         <span>FAQs</span>

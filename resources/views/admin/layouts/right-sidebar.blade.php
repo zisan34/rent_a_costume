@@ -1,4 +1,4 @@
-<!-- Right Sidebar -->
+{{-- <!-- Right Sidebar -->
 <div class="right-bar">
     <div class="rightbar-title">
         <a href="javascript:void(0);" class="right-bar-toggle float-right">
@@ -96,4 +96,4 @@
 <!-- /Right-bar -->
 
 <!-- Right bar overlay-->
-<div class="rightbar-overlay"></div>
+<div class="rightbar-overlay"></div> --}}

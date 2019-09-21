@@ -12,14 +12,17 @@
                 $myTotal = Cart::getTotal();
             }
              $ma=0;
-           // Cart::clear();
-          //  print_r($myCartCollection);
+             $iam=Auth::user();
+             if($iam){
+                  $i_image=App\Image::where('type','App\User')->where('type_id',$iam->id)->first();
+             }
+            
         @endphp
         <div class="ct-topBar">
             <div class="container">
                 <div class="ct-topBar-navigation pull-left">
                     <ul class="list-unstyled">
-                        <li><i class="fa fa-fw fa-phone"></i> Call us: (012) 345-6789</li>
+                        <li><i class="fa fa-fw fa-phone"></i> Call us: {{$siteSettings->w_phone}}</li>
                         @guest
                         <li><a href="{{ route('login') }}"><i class="fa fa-fw fa-user"></i> Login</a></li>
                         <li><a href="{{ route('register') }}"><i class="fa fa-fw fa-pencil"></i> Create an account</a></li>
@@ -29,6 +32,14 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
+                        <li><a href="{{url('myprofile')}}">
+                            @if($i_image)
+                            <img src="{{asset('upload/user/'.$i_image->image)}}" width="20px" style="bordar-radius:20%;" alt="">
+                            @else 
+                             <img src="{{asset('upload/user/default.png')}}" width="20px" style="bordar-radius:20%;" alt="">
+                            @endif
+                            My Profile</a>
+                        </li>
 
                             @auth
                             @if(auth()->user()->is_super_admin)
@@ -45,7 +56,7 @@
                 <div class="pull-right">
                      
                     <div class="ct-topBar-basket">
-                        <a href="my-cart.html"><span class="ct-topBar-basket-cart"><i class="fa fa-fw fa-shopping-cart"></i> Cart: </span><span class="ct-topBar-basket-quantity">{{$mycartTotalQuantity}} item(s)</span><span class="ct-topBar-basket-price"> - ${{$myTotal}}</span></a>
+                        <a href="#"><span class="ct-topBar-basket-cart"><i class="fa fa-fw fa-shopping-cart"></i> Cart: </span><span class="ct-topBar-basket-quantity">{{$mycartTotalQuantity}} item(s)</span><span class="ct-topBar-basket-price"> - ${{$myTotal}}</span></a>
                         <div class="ct-topBar-basket-info">
                             @if(is_array($myCartCollection))
                                 @foreach($myCartCollection as $myCartCollection)

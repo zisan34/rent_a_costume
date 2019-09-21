@@ -30,26 +30,24 @@
                                 <div class="card-box">
                                     <div class="row">
                                         <div class="col-lg-8">
-                                            <form class="form-inline">
-                                                <div class="form-group">
-                                                    <label for="inputPassword2" class="sr-only">Search</label>
-                                                    <input type="search" class="form-control" id="inputPassword2" placeholder="Search...">
-                                                </div>
+                                            <form class="form-inline" id="sform" action="{{url('admin/ecommerce-products')}}" method="POST">
+                                               @csrf
+                                               
                                                 <div class="form-group mx-sm-3">
                                                     <label for="status-select" class="mr-2">Sort By</label>
-                                                    <select class="custom-select" id="status-select">
+                                                    <select class="custom-select" onchange="$('#sform').submit();" id="status-select" name="sort_product">
                                                         <option selected="">All</option>
                                                         
-                                                        <option value="2">Price Low</option>
-                                                        <option value="3">Available</option>
-                                                        <option value="4">Not Available</option>
+                                                        <option value="price">Price </option>
+                                                        <option value="available">Available</option>
+                                                        <option value="created_at">Time Added</option>
                                                     </select>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class="col-lg-4">
                                             <div class="text-lg-right mt-3 mt-lg-0">
-                                                <button type="button" class="btn btn-success waves-effect waves-light mr-1"><i class="mdi mdi-settings"></i></button>
+                                                
                                                 <a href="{{url('admin/add_product')}}" class="btn btn-danger waves-effect waves-light"><i class="mdi mdi-plus-circle mr-1"></i> Add New</a>
                                             </div>
                                         </div><!-- end col-->
@@ -66,8 +64,8 @@
                                         <div class="card-box product-box">
 
                                             <div class="product-action">
-                                                <a href="javascript: void(0);" class="btn btn-success btn-xs waves-effect waves-light"><i class="mdi mdi-pencil"></i></a>
-                                                <a href="javascript: void(0);" class="btn btn-danger btn-xs waves-effect waves-light"><i class="mdi mdi-close"></i></a>
+                                                <a  href="{{url('admin/product_edit/'.urlencode($product->unique_code))}}" class="btn btn-success btn-xs waves-effect waves-light"><i class="mdi mdi-pencil"></i></a>
+                                                <a  href="{{url('admin/product_delete/'.urlencode($product->unique_code))}}" class="btn btn-danger btn-xs waves-effect waves-light"><i class="mdi mdi-close"></i></a>
                                             </div>
 
                                             <div class=”image-slider-wrapper”>

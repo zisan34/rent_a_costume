@@ -27,6 +27,8 @@
                                             <th scope="col" >Product</th>
                                             <th scope="col" >User</th>
                                             <th scope="col" >Price</th>
+                                            <th  scope="col">Start Date</th>
+                                            <th  scope="col">End Date</th>
                                             <th scope="col"  >At</th>
                                         </tr>
                                         </thead>
@@ -42,6 +44,8 @@
                                                     <td>{{$product->product_name}}</td>
                                                     <td>{{$user->email}}</td>
                                                     <td>{{$product->price}}</td>
+                                                    <td>{{$order->start_date}}</td>
+                                                    <td>{{$order->end_date}}</td>
                                                     <td>{{$order->created_at}}</td>
                                                 </tr>
                                                 @endforeach

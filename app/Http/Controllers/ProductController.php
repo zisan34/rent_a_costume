@@ -14,9 +14,20 @@ class ProductController extends AdminBaseController
     {
         $this->site_title='Product Control';
     }
-    public function ecommerceproducts()
+    public function ecommerceproducts(Request $request)
     {
-        $this->products=Product::paginate(12);
+        if($request->sort_product=='price'){
+            $this->all_products = Product::orderBy('price', 'desc')->paginate(10);
+        }
+        if($request->sort_product=='created_at'){
+            $this->all_products = Product::orderBy('created_at', 'desc')->paginate(10);
+        }
+        if($request->sort_product=='available'){
+            $this->products = Product::orderBy('availability', 'desc')->paginate(12);
+        }else{
+            $this->products = Product::paginate(12);
+        }
+       
         return view('admin.product.index',$this->data);
     }
     public function showProductForm(){
@@ -79,5 +90,15 @@ class ProductController extends AdminBaseController
             Session::flash('message', 'Some thing went wrong');
             return redirect()->back()->withInput();
         }
+    }
+    public function delete($id){
+        $code = urldecode($id);
+        Product::where('unique_code', $code)->delete();
+        Session::flash('message','Deleted');
+        return redirect()->back();
+    }
+    public function showcomment(){
+        $this->products=Product::paginate(10);
+        return view('admin.product.showcomment',$this->data);
     }
 }

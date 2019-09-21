@@ -8,7 +8,7 @@
         <div class="ct-contentWrapper">
             <div class="container">
                 <h4 class="ct-headerBox ct-u-borderBottom ct-u-paddingBottom20 text-left ct-u-paddingTop50">My Cart</h4>
-                <form action="#">
+               
                     <table class="ct-wishList ct-js-wishList ct-js-cartShop ct-u-marginBoth30">
                         <thead>
                             <tr>
@@ -31,10 +31,11 @@
                                 $t=$item['quantity'] * $cart_list_pro->price;
                                 
                             @endphp
-                                 <form action="{{url('checkout')}}" method="POST">
+                                
+                                    <tr>
+                                    <form action="{{url('checkout')}}" id="cartfrm{{$cart_list_pro->id}}" method="POST">
                                      @csrf
                                      <input type="hidden" value="{{$cart_list_pro->id}}" name="pro_id">
-                                    <tr>
                                         <td class="ct-wishList-image">
                                             @if($cart_list_pro->img_count($cart_list_pro->id)>0)
                                             <img src="{{asset('upload/product/'.$cart_image->image)}}" alt="Wishlist Product 1">
@@ -58,8 +59,9 @@
                                             <input type="submit" value="Ok" class="btn  col-md-3">
                                             <a class="btn btn-default btn-md " href="{{url('removecart/'.$cart_list_pro->id)}}">X</a>
                                         </td>
+                                        </form>
                                     </tr>
-                                </form>
+                                
                             @endforeach
                             @endif
                            
@@ -67,7 +69,7 @@
                     </table>
                 
                    <div class="card">
-                        <a href="" class="btn btn-info">Make the payment</a>
+                        <a href="{{url('makethepayment')}}" class="btn btn-info">Make the payment</a>
                     </div>
                     <div class="ct-shopSections">
                         <div class="row">
@@ -99,7 +101,7 @@
                             </div>
                         </div>
                     </div>
-                </form>
+               
             </div>
 
         </div>
