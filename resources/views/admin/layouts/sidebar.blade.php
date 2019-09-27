@@ -88,7 +88,7 @@
                                 <li><a href="{{url('admin/editBrand')}}">Brands</a>  </li>
                             </ul>
                         </li>
-                        <li>
+                        {{-- <li>
                              <a href="javascript: void(0);">
                                  <span>  Faqs </span>
                                  <span class="menu-arrow"></span>
@@ -97,7 +97,7 @@
                                 <li>Add Faqs </li>
                                 <li>Edit Faqs </li>
                             </ul>
-                        </li>
+                        </li> --}}
                        
                     </ul>
                 </li>
@@ -109,18 +109,19 @@
                         <span class="menu-arrow"></span>
                     </a>
                     <ul class="nav-second-level" aria-expanded="false">
-                        <li>
-                            <a href="{{url('admin/ecommerce-dashboard')}}">Dashboard</a>
-                        </li>
+                        
                         <li>
                             <a href="{{url('admin/ecommerce-products')}}">Products</a>
                         </li>
-                        {{-- <li>
-                            <a href="{{url('admin/ecommerce-prduct-detail')}}">Product Detail</a>
-                        </li> --}}
+                        <li>
+                            <a href="{{url('admin/showComment')}}">Product Comment</a>
+                        </li>
                        
                         <li>
                             <a href="{{url('admin/total_orders')}}">Orders</a>
+                        </li>
+                        <li>
+                            <a href="{{url('admin/total_invoice')}}">Invoices</a>
                         </li>
                         
                     </ul>
@@ -182,88 +183,8 @@
                     </ul>
                 </li>
 
-                <li>
-                    <a href="javascript: void(0);">
-                        <i class="fe-file-text"></i>
-                        <span> Pages </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li>
-                            <a href="pages-starter">Starter</a>
-                        </li>
-                        <li>
-                            <a href="pages-login">Log In</a>
-                        </li>
-                        <li>
-                            <a href="pages-register">Register</a>
-                        </li>
-                        <li>
-                            <a href="pages-signin-signup">Signin - Signup</a>
-                        </li>
-                        <li>
-                            <a href="pages-recoverpw">Recover Password</a>
-                        </li>
-                        <li>
-                            <a href="pages-lock-screen">Lock Screen</a>
-                        </li>
-                        <li>
-                            <a href="pages-logout">Logout</a>
-                        </li>
-                        <li>
-                            <a href="pages-confirm-mail">Confirm Mail</a>
-                        </li>
-                        <li>
-                            <a href="pages-404">Error 404</a>
-                        </li>
-                        <li>
-                            <a href="pages-404-alt">Error 404-alt</a>
-                        </li>
-                        <li>
-                            <a href="pages-500">Error 500</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="javascript: void(0);">
-                        <i class="fe-package"></i>
-                        <span> Extra Pages </span>
-                        <span class="menu-arrow"></span>
-                    </a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li>
-                            <a href="extras-profile">Profile</a>
-                        </li>
-                        {{-- <li>
-                            <a href="extras-timeline">Timeline</a>
-                        </li>
-                        <li>
-                            <a href="extras-sitemap">Sitemap</a>
-                        </li> --}}
-                        <li>
-                            <a href="extras-invoice">Invoice</a>
-                        </li>
-                        <li>
-                            <a href="extras-faqs">FAQs</a>
-                        </li>
-                        <li>
-                            <a href="extras-search-results">Search Results</a>
-                        </li>
-                        <li>
-                            <a href="extras-pricing">Pricing</a>
-                        </li>
-                        <li>
-                            <a href="extras-maintenance">Maintenance</a>
-                        </li>
-                        {{-- <li>
-                            <a href="extras-coming-soon">Coming Soon</a>
-                        </li>
-                        <li>
-                            <a href="extras-gallery">Gallery</a>
-                        </li> --}}
-                    </ul>
-                </li>
+              
+               
 
                 <li>
                     <a href="{{route('userManagement')}}">
@@ -276,7 +197,7 @@
 
 
                 <li>
-                    <a href="{{route('faqs')}}">
+                    <a href="{{route('admin.faqs')}}">
                         <i class="fe-bookmark"></i>
                         {{-- <span class="badge badge-success badge-pill float-right">4</span> --}}
                         <span>FAQs</span>

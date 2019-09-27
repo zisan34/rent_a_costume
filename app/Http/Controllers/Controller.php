@@ -12,6 +12,7 @@ use App\Brand;
 use Cart;
 use Auth;
 use Session;
+use DB;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
@@ -30,6 +31,7 @@ class Controller extends BaseController
         $this->all_products=Product::paginate(10);
         $this->all_brands=Brand::paginate(10);
         $this->all_category=ProductCategory::paginate(10);
+        $this->site_data = DB::table('site_settings')->first();
         
        
     }

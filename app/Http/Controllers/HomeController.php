@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
+use App\Country;
+use App\Image;
 use App\City;
+use App\User;
 use App\Product;
 use App\ProductCategory;
 use Auth;
@@ -62,7 +65,48 @@ class HomeController extends Controller
     }
     public function mission()
     {
-        return view('mission');
+        return view('mission',$this->data);
+    }
+    public function contactus(){
+        $this->site_data=DB::table('site_settings')->first();
+        return view('contactus',$this->data);
+    }
+    public function myprofile(){
+        $this->me=Auth::user();
+        $this->country=Country::find($this->me->country_id);
+        $this->city=City::find($this->me->city_id);
+        $this->user_image=Image::where('type','App\User')->where('type_id',$this->me->id)->first();
+        return view('myprofile',$this->data);
+
+    }
+    public function edit_my_profile(Request $request){
+        $u=Auth::user()->id;
+        $user=User::find($u);
+        $user->name=$request->name;
+        $user->phone=$request->phone;
+        if($request->hasFile('image')){
+            $image = $request->File('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            $image->move('upload/user/', $filename);
+            $check=Image::where('type','App\User')->where('type_id',$u)->first();
+            if($check){
+              
+                $check->image = $filename;
+                $check->type = 'App\User';
+                $check->type_id = $u;
+                $check->save();
+            }else{
+                $img = new Image;
+                $img->image = $filename;
+                $img->type = 'App\User';
+                $img->type_id = $u;
+                $img->save();
+            }
+            
+        }
+       $user->save();
+       return redirect()->back();
+
     }
     public function logout(Request $request)
     {

@@ -34,7 +34,14 @@
     @include('inc.mobile-menu')
 
     <div id="ct-js-wrapper" class="ct-pageWrapper">
-
+    @php
+        $mes_ti=Session::get('message');
+    @endphp
+    @if($mes_ti)
+        <div>
+            <h5 class="text-info">{{$mes_ti}}</h5>
+        </div>
+    @endif
         <!-- navbar + logo menu -->
         <div class="ct-navbarMobile">
             <button type="button" class="navbar-toggle">
