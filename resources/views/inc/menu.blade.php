@@ -4,9 +4,7 @@
                 <div class="ct-header ct-header--default ct-u-paddingTop30 ct-u-paddingBottom50">
                     <div class="ct-header-navigation">
                         <ul class="list-unstyled list-inline">
-                            {{-- <li><a href="my-account.html">My Account</a></li>
-                            <li><a href="wishlist.html">Wishlist</a></li>
-                            <li><a href="checkout.html">Checkout</a></li> --}}
+                            
                         </ul>
                     </div>
                     <div class="ct-header-logo">
@@ -73,21 +71,20 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="about-us.html">Pages</a>
+                            <a >Pages</a>
                             <ul class="dropdown-menu text-uppercase">
-                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="{{ route('about') }}">About Us</a></li>
                         
                           
-                            <li><a href="pricing.html">Pricing</a></li>
-                            <li><a href="our-services.html">Our Services</a></li>
                            
-                            <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="{{url('/support')}}">Our Services</a></li>
+                           
+                            <li><a href="{{route('faqs')}}">FAQ</a></li>
                             </ul>
                         </li>
-
-                        <li><a href="contact.html">Contact</a></li>
                         <li><a href="{{ route('support') }}">24x7 Support Center</a></li>
                         <li><a href="{{ route('faqs') }}">FAQs</a></li>
+                        <li><a href="{{url('contactus')}}">Contact</a></li>
                     </ul>
                     <div id="ct-js-navSearch" class="ct-navbar-navSearch navbar-search pull-right">
                         <i class="fa fa-fw fa-search"></i>

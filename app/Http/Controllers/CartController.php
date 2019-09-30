@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Auth;
 use Session;
 use App\Product;
+use App\Invoice;
+use App\UserCard;
 use Cart;
 use Exception;
 use DB;
@@ -84,7 +86,10 @@ class CartController extends Controller
         return ['status' => 'okay','total' =>$total];
     }
     public function checkout(Request $request){
-       
+        $my=Auth::user();
+        if($my->status==0){
+            return 'You are inactive user';
+        }
         $product=Product::find($request->pro_id);
         $subTotal = Cart::getSubTotal();
         $d = DB::table('orders_settings')->first();
@@ -120,5 +125,43 @@ class CartController extends Controller
         $product=Product::find($request->pro_id);
         $user->comment($product, $request->comment, $request->rating);
         return redirect()->back();
+    }
+    public function makethepayment(){
+        return view('customer.invoice',$this->data);
+    }
+    public function makethepaymenttrue(Request $request){
+        $batchs = Session::get('array');
+        $user=Auth::user();
+        foreach($batchs as $batch){
+            $price=0;
+            $ordr=Order::where('order_batch',$batch)->get();
+            foreach($ordr as $order){
+                $price=$price+$order->total_amount;
+                $p=Product::find($order->product_id);
+                $t = Carbon::today();
+                $t = $t->format('Y-m-d');
+                $p->last_rent=$t;
+                $p->save();
+            }
+            $invoice= new Invoice;
+            $invoice->title='product purchase#'.$batch;
+            $invoice->payer_name=$user->name;
+            $invoice->payer_email=$user->email;
+            $invoice->invoice_id=$batch;
+            $invoice->paypal_fee=0;
+            $invoice->tax=0;
+            $invoice->currencty='USD';
+            $invoice->payment_method='paypal';
+            $invoice->paid=1;
+            $invoice->transection_id=time();
+            $invoice->price=$price;
+            $invoice->save();
+            $myammount = UserCard::where('user_id', $user->id)->first();
+            $myammount->total_amount=$myammount->total_amount-$price;
+            $myammount->save();
+
+        }
+        Session::flash('message','Operation Successful');
+        return redirect('/');
     }
 }

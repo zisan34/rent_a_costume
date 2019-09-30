@@ -18,23 +18,29 @@ Route::any('logout','HomeController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
 
 
+Route::post('edit_my_profile', 'HomeController@edit_my_profile');
+Route::get('myprofile', 'HomeController@myprofile');
+
 Route::group(['prefix' => 'admin/', 'middleware'=>'admin'], function() {
 	Route::get('adminDashboard','BackEndController@dashboard')->name('admin.dashboard');
 
-  Route::get('apps-calendar','BackEndController@calendar')->name('app.calendar');
+	Route::get('apps-calendar','BackEndController@calendar')->name('app.calendar');
 
-	Route::get('apps-contacts', 'BackEndController@appscontacts');
-	Route::get('apps-tickets', 'BackEndController@appstickets');
-	Route::get('apps-companies', 'BackEndController@appscompanies');
-	Route::get('ecommerce-products', 'ProductController@ecommerceproducts');
+	Route::get('apps-contacts', 'BackendController@appscontacts');
+	Route::get('apps-tickets', 'BackendController@appstickets');
+	Route::get('apps-companies', 'BackendController@appscompanies');
+	Route::any('ecommerce-products', 'ProductController@ecommerceproducts');
 	Route::get('add_product', 'ProductController@showProductForm');
 	Route::get('productDetails/{id}', 'ProductController@ecommerceprductdetail');
 	Route::get('product_edit/{id}', 'ProductController@ecommerceproductedit');
+	Route::get('product_delete/{id}','ProductController@delete');
 	Route::post('product_save', 'ProductController@product_save');
 	Route::post('product_edit', 'ProductController@store');
 
-	Route::get('total_orders', 'BackEndController@ecommerceorders');
-	Route::get('ecommerce-sellers', 'BackEndController@ecommercesellers');
+	Route::get('showComment','ProductController@showcomment');
+	Route::get('total_orders', 'BackendController@ecommerceorders');
+	Route::get('total_invoice', 'BackendController@total_invoice');
+	Route::get('ecommerce-sellers', 'BackendController@ecommercesellers');
 	Route::get('addCategory', 'CategoryBrandController@addCategory');
 	Route::get('addBrand', 'CategoryBrandController@addBrand');
 	Route::post('save_category', 'CategoryBrandController@save_category');
@@ -69,7 +75,7 @@ Route::group(['prefix' => 'admin/', 'middleware'=>'admin'], function() {
 	Route::get('user-management/user/disable/{id}','BackendController@userDisable')->name('user.disable');
 	Route::get('user-management/user/enable/{id}','BackendController@userEnable')->name('user.enable');
 
-	Route::get('faqs','BackendController@faqs')->name('faqs');
+	Route::get('faqs','BackendController@faqs')->name('admin.faqs');
 
 	Route::post('faq/add','FaqsController@store')->name('faq.add');
 	Route::get('faq/show/{id}','FaqsController@show')->name('faq.show');
@@ -79,7 +85,7 @@ Route::group(['prefix' => 'admin/', 'middleware'=>'admin'], function() {
 
 
 
-	Route::get('{any}','BackendController@index')->name('dashboard');
+	//Route::get('{any}','BackendController@index')->name('dashboard');
 	
 
 });
@@ -88,13 +94,17 @@ Route::get('showfeatured_product', 'CustomerProductController@showfeatured');
 Route::get('showtop_product', 'CustomerProductController@showtop');
 Route::any('showall_product', 'CustomerProductController@showall');
 Route::any('single_product/{id}', 'CustomerProductController@singleshow');
+
+
 Route::group(['middleware' => 'auth'], function () {
 Route::get('addto_card', 'CartController@add');
 Route::get('mycart','CartController@show_cart');
 Route::get('check_end_date', 'CartController@check_end_date');
 Route::post('checkout', 'CartController@checkout');
 Route::get('removecart/{id}','CartController@remove');
-route::post('submit_rating', 'CartController@submit_rating');
+Route::post('submit_rating', 'CartController@submit_rating');
+Route::get('makethepayment','CartController@makethepayment');
+Route::post('makethepaymenttrue', 'CartController@makethepaymenttrue');
 
 });
 
@@ -115,6 +125,23 @@ Route::get('view/{id}','CustomerQueriesController@show')->name('support.show');
 
 });
 
+
+Route::get('faqs','HomeController@faqs')->name('faqs');
+Route::get('about','HomeController@aboutUs')->name('about');
+Route::get('mission','HomeController@mission')->name('mission');
+Route::get('contactus','HomeController@contactus');
+
+Route::group(['prefix' => 'support/', 'middleware'=>'auth'], function() {
+
+	Route::get('/','CustomerQueriesController@index')->name('support');
+
+	Route::post('store','CustomerQueriesController@store')->name('support.store');
+
+	Route::post('comment','CustomerQueriesController@addComment')->name('support.comment');
+
+	Route::get('view/{id}','CustomerQueriesController@show')->name('support.show');
+
+});
 
 
 Auth::routes();
